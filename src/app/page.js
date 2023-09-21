@@ -10,7 +10,7 @@ export default function Home() {
       <div className={styles.description}>
         <p>
         Get started by editing&nbsp;
-          <Link href={"/api/mlb/schedule/today"}>
+          <Link href="/api/mlb/schedule/today">
             <code className="font-mono font-bold">api/index.py</code>
           </Link>
         </p>
