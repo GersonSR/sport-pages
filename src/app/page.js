@@ -9,10 +9,7 @@ export default function Home() {
     <main className={styles.main}>
       <div className={styles.description}>
         <p>
-        Get started by editing&nbsp;
-          <Link href="/api/mlb/schedule/today">
-            <code className="font-mono font-bold">api/index.py</code>
-          </Link>
+          Welcome!
         </p>
         <div>
           <a
