@@ -1,0 +1,14 @@
+.sports-grid {
+  display: flex;
+}
+
+.sports-grid__item {
+  flex: 1;
+  padding: 1rem;
+}
+
+.sports-grid__item a{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
