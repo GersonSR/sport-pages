@@ -1,8 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
+import ScoreTable from "./_components/scoretable/scoretable";
 
 import styles from "./page.module.css";
-
 const SportPage = () => {
   return (
     <main className={styles.main}>
@@ -27,6 +27,7 @@ const SportPage = () => {
             ></Image>
             <span>MLB</span>
             </Link>
+            <ScoreTable league="mlb" date="today"/>
         </li>
       </ul>
     </main>
