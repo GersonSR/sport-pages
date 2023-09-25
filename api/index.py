@@ -13,3 +13,9 @@ def mlb_schedule_single(date):
         date = datetime.strptime(date, '%Y-%m-%d')
     schedule = statsapi.schedule(date)
     return schedule
+
+@app.route("/api/mlb/team/<team_id>")
+def mlb_team(team_id):
+    # team = statsapi.lookup_team(team_id)
+    team = statsapi.get('teams', {'teamId': team_id})
+    return team

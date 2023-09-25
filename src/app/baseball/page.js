@@ -17,7 +17,7 @@ const SportPage = () => {
       </h1>
       <ul className={styles.leagues}>
         <p>Choose which league to view:</p>
-        <li className={styles.league}>
+        <li className={styles.league} key={"MLB"}>
           <Link href="/baseball/MLB">
             <Image 
               src="/images/baseball/mlb/mlblogo.svg"
