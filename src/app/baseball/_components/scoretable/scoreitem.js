@@ -8,7 +8,7 @@ const ScoreItem = (props) => {
   let displayScores = false;
   const gameTime = new Date(score["game_datetime"]);
   let status = score['status'];
-  if (status !== "In Progress") { 
+  if (status === "In Progress") { 
     displayScores = true;
     status = score['inning_state'] + " " + score['current_inning'];
   }
@@ -16,7 +16,7 @@ const ScoreItem = (props) => {
   // const awayRecord = fetch("/api/mlb/record/" + score["away_id"]);
   return (
     <div className={styles["score-item"]}>
-      <div className="status"></div>
+      <div className="status">{status}</div>
       <div className={styles.score}>
         <div className="away-name">{score["away_name"]}</div>
         <div className={styles["away-score"]}>{score["away_score"]}</div>
