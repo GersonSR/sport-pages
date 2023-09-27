@@ -18,3 +18,12 @@ def mlb_schedule_single(date):
 def mlb_team(team_id):
     team = statsapi.lookup_team(team_id)
     return team
+
+@app.route("/api/mlb/standings/<date>")
+def mlb_standings(date):
+    if (date == "today") :
+        date = datetime.today().strftime("%m/%d/%Y")
+    else :
+        date = datetime.strptime(date, '%Y-%m-%d')
+    standings = statsapi.standings_data(leagueId="103,104", division="all", include_wildcard=True, season=None, standingsTypes=None, date=date)
+    return standings
