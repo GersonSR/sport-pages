@@ -1,10 +1,10 @@
 //Currently will be hardcoded for baseball/MLB. Will need to be updated to be dynamic for all sports/leagues.
 
+import { useEffect } from "react";
 import styles from "./scoreitem.module.css";
 
 const ScoreItem = (props) => {
   const score = props.score;
-
   let displayScores = false;
   const gameTime = new Date(score["game_datetime"]);
   let status = score['status'];

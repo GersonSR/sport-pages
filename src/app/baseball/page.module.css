@@ -25,7 +25,7 @@
 .league {
   display: flex;
   flex-direction: row;
-  padding: 2rem; 
+  border: 2px solid black; 
 }
 
 .league a {
