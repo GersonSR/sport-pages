@@ -7,25 +7,32 @@ const DivisionStandings = ({ division }) => {
 
   return (
     <div className={styles["division"]}>
-      <span>{division.div_name}</span>
-      <table className="teams-table">
+      <table className={styles["teams-table"]}>
+        <caption>{division.div_name}</caption>
+        <colgroup>
+          <col/>
+          <col></col>
+          <col></col>
+          <col></col>
+          <col></col>
+        </colgroup>
         <thead>
           <tr>
             <th>Teams</th>
             <th>W</th>
             <th>L</th>
-            <th>PCT</th>
+            <th>WIN%</th>
             <th>GB</th>
           </tr>
         </thead>
         <tbody>
           {division.teams.map((team) => (
-            <tr key={team.team_id}>
-              <td>{team.name}</td>
-              <td>{team.w}</td>
-              <td>{team.l}</td>
-              <td>{calculatePCT(team.w, team.l)}</td>
-              <td>{team.gb}</td>
+            <tr className={styles["team-row"]} key={team.team_id}>
+              <td className={styles["team-names"]}>{team.name}</td>
+              <td className={styles["wins"]}>{team.w}</td>
+              <td className={styles["losses"]}>{team.l}</td>
+              <td className={styles["win-pct"]}>{calculatePCT(team.w, team.l)}</td>
+              <td className={styles["games-back"]}>{team.gb}</td>
             </tr>
           ))}
         </tbody>

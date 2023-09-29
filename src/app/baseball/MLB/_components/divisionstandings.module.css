@@ -1,3 +1,34 @@
 .division {
   padding: 1rem;
 }
+
+.teams-table {
+  border-collapse: collapse;
+}
+
+.team-row {
+  border: 1px solid gray;
+}
+
+.team-row td {
+  border-left: 1px solid gray;
+}
+.team-names {
+  padding: 0 1rem;
+}
+
+.wins {
+  padding: 0 .5rem;
+}
+
+.losses {
+  padding: 0 .5rem;
+}
+
+.win-pct {
+  padding: 0 .5rem;
+}
+
+.games-back {
+  padding: 0 .5rem;
+}
