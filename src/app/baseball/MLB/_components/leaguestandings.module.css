@@ -1,0 +1,14 @@
+.league-standings{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.league-header {
+  text-align: center;
+  padding: 1rem;
+}
+
+.league {
+  padding: 2rem;
+}

@@ -472,7 +472,7 @@ const MLBPage = () => {
       }}
     >
       <main className={styles.main}>
-        <h1 className={styles.header}>MLB Page</h1>
+        <h1 className={styles.header}>MLB Home Page</h1>
         <div className={styles["league-intro"]}>
           Hello, this is the MLB page.
         </div>
