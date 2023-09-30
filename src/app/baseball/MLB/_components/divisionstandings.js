@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styles from "./divisionstandings.module.css";
 
 const DivisionStandings = ({ division }) => {
@@ -17,7 +18,7 @@ const DivisionStandings = ({ division }) => {
           <col></col>
         </colgroup>
         <thead>
-          <tr>
+          <tr className={styles["teams-table-head"]}>
             <th>Teams</th>
             <th>W</th>
             <th>L</th>
@@ -28,7 +29,7 @@ const DivisionStandings = ({ division }) => {
         <tbody>
           {division.teams.map((team) => (
             <tr className={styles["team-row"]} key={team.team_id}>
-              <td className={styles["team-names"]}>{team.name}</td>
+              <td className={styles["team-names"]}><Link className={styles["team-link"]} href={"/baseball/mlb/team/" + `${team.team_id}`}>{team.name}</Link></td>
               <td className={styles["wins"]}>{team.w}</td>
               <td className={styles["losses"]}>{team.l}</td>
               <td className={styles["win-pct"]}>{calculatePCT(team.w, team.l)}</td>

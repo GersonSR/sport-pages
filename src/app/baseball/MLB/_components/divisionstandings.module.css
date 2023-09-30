@@ -4,6 +4,15 @@
 
 .teams-table {
   border-collapse: collapse;
+  font-size: large;
+}
+
+.teams-table-head {
+  border: 1px solid gray;
+}
+
+.teams-table-head th {
+  border-left: 1px solid gray;
 }
 
 .team-row {
@@ -13,6 +22,16 @@
 .team-row td {
   border-left: 1px solid gray;
 }
+
+.team-row td:hover {
+  background-color: lightgray;
+}
+
+.team-link {
+  text-decoration: none;
+  color: black;
+}
+
 .team-names {
   padding: 0 1rem;
 }
