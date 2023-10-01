@@ -27,3 +27,35 @@ def mlb_standings(date):
         date = datetime.strptime(date, '%Y-%m-%d')
     standings = statsapi.standings_data(leagueId="103,104", division="all", include_wildcard=True, season=None, standingsTypes=None, date=date)
     return standings
+
+@app.route("/api/mlb/team/<team_id>/roster")
+def mlb_roster(team_id):
+    roster = statsapi.get('team_roster', {'teamId': team_id})
+    return roster
+
+@app.route("/api/mlb/team/<team_id>/stats/<category>/<season>/<game_type>/<amount>")
+def mlb_team_stats(team_id, category, season, game_type, group):
+    if (season == "current") :
+        season = datetime.today().year
+    else :
+        season = int(season)
+
+    if (game_type == "regular") :
+        game_type = "R"
+    elif (game_type == "postseason") :
+        game_type = "P"
+    elif (game_type == "spring") :
+        game_type = "S"
+    
+    amount = int(amount)
+
+    stats = statsapi.team_stats(team_id, category, season, game_type, amount)
+    return stats
+
+
+
+@app.route("/api/mlb/teamleaders/categories")
+def mlb_teamleaders_categories():
+    categories = statsapi.meta('leagueLeaderTypes')
+    return categories
+
