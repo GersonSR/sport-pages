@@ -31,7 +31,6 @@ def mlb_standings(date):
 @app.route("/api/mlb/team/<team_id>/roster/<date>")
 def mlb_roster(team_id, date):
     date = date.replace("-", "/")
-    print(date)
     roster = statsapi.get('team_roster', {'teamId': team_id, 'date': date})
     return roster
 
