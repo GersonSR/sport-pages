@@ -1,0 +1,18 @@
+.info-container {
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom: 1px solid gray;
+}
+
+.team-name {
+  font-size: x-large;
+  font-weight: bold;
+}
+
+.team-code {
+  font-size: large;
+  font-weight: normal;
+  color: gray;
+}

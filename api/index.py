@@ -52,10 +52,7 @@ def mlb_team_stats(team_id, category, season, game_type, group):
     stats = statsapi.team_stats(team_id, category, season, game_type, amount)
     return stats
 
-
-
 @app.route("/api/mlb/teamleaders/categories")
 def mlb_teamleaders_categories():
     categories = statsapi.meta('leagueLeaderTypes')
     return categories
-

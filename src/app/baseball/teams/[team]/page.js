@@ -1,5 +1,8 @@
 "use client"
 
+import TeamInfo from "./_components/teaminfo";
+import TeamRoster from "./_components/teamroster";
+import TeamStatLeaders from "./_components/teamstatleaders";
 import styles from "./page.module.css";
 import { Fragment, useCallback, useEffect, useState } from "react";
 
@@ -33,13 +36,15 @@ const TeamPage = ({params}) => {
   if (teamData.length > 0) { 
      teamObject = teamData[0];
   }
-
-  console.log(teamObject);
   return (
     <main className={styles.main}>
       {!isLoaded && <div>Loading...</div>}
       {isLoaded && (teamData.length > 0) && (
-        <div>{teamObject.name} Team Page</div>
+        <div className={styles["team-container"]}>
+          <TeamInfo team={teamObject} />
+          <TeamRoster team={teamObject} />
+          <TeamStatLeaders team={teamObject} />
+        </div>
       )}
     </main>
   );
