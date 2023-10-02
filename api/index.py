@@ -28,9 +28,10 @@ def mlb_standings(date):
     standings = statsapi.standings_data(leagueId="103,104", division="all", include_wildcard=True, season=None, standingsTypes=None, date=date)
     return standings
 
-@app.route("/api/mlb/team/<team_id>/roster")
-def mlb_roster(team_id):
-    roster = statsapi.get('team_roster', {'teamId': team_id})
+@app.route("/api/mlb/team/<team_id>/roster/<date>")
+def mlb_roster(team_id, date):
+    date = date.replace("-", "/")
+    roster = statsapi.get('team_roster', {'teamId': team_id, 'date': date})
     return roster
 
 @app.route("/api/mlb/team/<team_id>/stats/<category>/<season>/<game_type>/<amount>")
