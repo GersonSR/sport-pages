@@ -1,6 +1,7 @@
 "use client" //Will be using state for this component
 
 import styles from "./teamroster.module.css";
+import Roster from "./_roster/roster";
 
 import { useEffect, useState } from "react";
 
@@ -8,7 +9,7 @@ const TeamRoster = ({ team }) => {
   const [roster, setRoster] = useState([]);
   const [date, setDate] = useState(new Date());
   const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(true); //Change to false once done with roster work
   let formattedDate = date.toLocaleDateString("en-CA")
 
   const getRoster = async () => {
@@ -44,7 +45,7 @@ const TeamRoster = ({ team }) => {
   }, [date]);
 
   useEffect(() => {
-    // getRoster();
+    //getRoster(); 
   }, []);
 
 
@@ -59,6 +60,10 @@ const TeamRoster = ({ team }) => {
           <button>Search</button>
         </form>
       </div>
+      {!isLoaded && <div>Loading...</div>}
+      {isLoaded && (roster.length > 0) && 
+        <Roster roster={roster} />
+      }
     </div>
   );
 }
