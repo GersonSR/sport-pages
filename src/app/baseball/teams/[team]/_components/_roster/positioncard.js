@@ -5,7 +5,7 @@ import PositionTable from './positiontable';
 const PositionCard = ({ position, players }) => {
   return (
     <div className={styles["position-card"]}>
-      <h3>{position}</h3>
+      <h3 className={styles["position-header"]}>{position}</h3>
       <PositionTable players={players} />
     </div>
   );

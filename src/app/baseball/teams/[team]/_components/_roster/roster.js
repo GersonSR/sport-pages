@@ -8,27 +8,29 @@ const Roster = (props) => {
   let catchers = [];
   let hitters = [];
 
-  const roster = [
-    {
-      jerseyNumber: "2",
-      parentTeamId: 117,
-      person: {
-        fullName: "Alex Bregman",
-        id: 608324,
-        link: "/api/v1/people/608324",
-      },
-      position: {
-        abbreviation: "3B",
-        code: "5",
-        name: "Third Base",
-        type: "Infielder",
-      },
-      status: {
-        code: "A",
-        description: "Active",
-      },
-    },
-  ];
+  // const roster = [
+  //   {
+  //     jerseyNumber: "2",
+  //     parentTeamId: 117,
+  //     person: {
+  //       fullName: "Alex Bregman",
+  //       id: 608324,
+  //       link: "/api/v1/people/608324",
+  //     },
+  //     position: {
+  //       abbreviation: "3B",
+  //       code: "5",
+  //       name: "Third Base",
+  //       type: "Infielder",
+  //     },
+  //     status: {
+  //       code: "A",
+  //       description: "Active",
+  //     },
+  //   },
+  // ];
+
+  const roster = props.roster;
 
   for (const player of roster) {
     switch (player.position.type) {

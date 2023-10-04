@@ -10,7 +10,7 @@ const PositionTable = ({ players }) => {
   return (
     <Fragment>
       {!nonEmptyPlayers && <div>No Players Found</div>}
-      {nonEmptyPlayers && <table>
+      {nonEmptyPlayers && <table className={styles["player-table"]}>
         <thead>
           <tr>
             <th>Name</th>

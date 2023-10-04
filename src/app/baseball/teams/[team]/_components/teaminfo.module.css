@@ -16,3 +16,8 @@
   font-weight: normal;
   color: gray;
 }
+
+.link {
+  text-decoration: none;
+  color: black;
+}

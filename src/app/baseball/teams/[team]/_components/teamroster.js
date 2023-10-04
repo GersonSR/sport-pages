@@ -9,7 +9,7 @@ const TeamRoster = ({ team }) => {
   const [roster, setRoster] = useState([]);
   const [date, setDate] = useState(new Date());
   const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(true); //Change to false once done with roster work
+  const [isLoaded, setIsLoaded] = useState(false); //Change to false once done with roster work
   let formattedDate = date.toLocaleDateString("en-CA")
 
   const getRoster = async () => {
@@ -45,7 +45,7 @@ const TeamRoster = ({ team }) => {
   }, [date]);
 
   useEffect(() => {
-    //getRoster(); 
+    getRoster(); 
   }, []);
 
 
@@ -61,7 +61,7 @@ const TeamRoster = ({ team }) => {
         </form>
       </div>
       {!isLoaded && <div>Loading...</div>}
-      {isLoaded && (roster.length >= 0) && 
+      {isLoaded && (roster.length > 0) && 
         <Roster roster={roster} />
       }
     </div>
