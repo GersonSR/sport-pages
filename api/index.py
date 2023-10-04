@@ -36,7 +36,7 @@ def mlb_roster(team_id, date):
     return roster
 
 @app.route("/api/mlb/team/<team_id>/stats/<category>/<season>/<game_type>/<amount>")
-def mlb_team_stats(team_id, category, season, game_type, group):
+def mlb_team_stats(team_id, category, season, game_type, amount):
     if (season == "current") :
         season = datetime.today().year
     else :
@@ -51,10 +51,29 @@ def mlb_team_stats(team_id, category, season, game_type, group):
     
     amount = int(amount)
 
-    stats = statsapi.team_stats(team_id, category, season, game_type, amount)
+    stats = statsapi.team_leader_data(team_id, category, season, game_type, amount)
     return stats
 
 @app.route("/api/mlb/teamleaders/categories")
 def mlb_teamleaders_categories():
     categories = statsapi.meta('leagueLeaderTypes')
     return categories
+
+# @app.route("/api/mlb/players/<player_id>/<type>/<group>")
+# def mlb_player(player_id, type, group) :
+#     player_data = statsapi.player_stat_data(player_id) #Later add type and group, view Docs.
+#     return player_data
+
+@app.route("/api/mlb/players/<player_id>/")
+def mlb_player(player_id) :
+    player_data = statsapi.player_stat_data(player_id) #Later add type and group, view Docs.
+    return player_data
+
+@app.route("/api/mlb/playersearch/<name>")
+def mlb_player_search(name) :
+    name = name.replace("%20", " ") #Assumption here is both first and last name are being searched
+    
+    player_data = statsapi.lookup_player(name)
+    
+    
+    return player_data
