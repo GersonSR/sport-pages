@@ -61,7 +61,7 @@ const TeamRoster = ({ team }) => {
         </form>
       </div>
       {!isLoaded && <div>Loading...</div>}
-      {isLoaded && (roster.length > 0) && 
+      {isLoaded && (roster.length >= 0) && 
         <Roster roster={roster} />
       }
     </div>
