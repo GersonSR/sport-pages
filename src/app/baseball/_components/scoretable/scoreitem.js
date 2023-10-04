@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import styles from "./scoreitem.module.css";
+import Link from "next/link";
 
 const ScoreItem = (props) => {
   const score = props.score;
@@ -18,11 +19,11 @@ const ScoreItem = (props) => {
     <div className={styles["score-item"]}>
       <div className="status">{status}</div>
       <div className={styles.score}>
-        <div className="away-name">{score["away_name"]}</div>
+        <Link href={`/baseball/teams/${score.away_id}`} className={styles["away-name"]}>{score["away_name"]}</Link>
         <div className={styles["away-score"]}>{score["away_score"]}</div>
       </div>
       <div className={styles.score}>
-        <div className="home-name">{score["home_name"]}</div>
+        <Link href={`/baseball/teams/${score.home_id}`} className={styles["home-name"]}>{score["home_name"]}</Link>
         <div className={styles["home-score"]}>{score["home_score"]}</div>
       </div>
     </div>

@@ -24,3 +24,13 @@
 .home-score {
   padding-left: 1rem;
 }
+
+.home-name {
+  text-decoration: none;
+  color: black;
+}
+
+.away-name {
+  text-decoration: none;
+  color: black;
+}
