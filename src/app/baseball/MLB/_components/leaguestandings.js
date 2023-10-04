@@ -10,7 +10,8 @@ const LeagueStandings = (props) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const MLB = useContext(MLBContext);
   const checkMLM = () => {
-    if (MLBContext === undefined) setIsLoaded(false);
+    if (MLBContext === undefined || MLB.standings === undefined)
+      setIsLoaded(false);
     else setIsLoaded(true);
   };
 
@@ -18,6 +19,7 @@ const LeagueStandings = (props) => {
     checkMLM();
   }, [MLB]);
 
+  console.log(isLoaded);
   return (
     <Fragment>
       <h2 className={styles["league-header"]}>Current Divisional Standings</h2>

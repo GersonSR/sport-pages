@@ -22,9 +22,10 @@ def mlb_team(team_id):
 @app.route("/api/mlb/standings/<date>")
 def mlb_standings(date):
     if (date == "today") :
-        date = datetime.today().strftime("%m/%d/%Y")
+        date = datetime.today().strftime("%m/%d/%Y") #currently not accounting for regular season end/start
+        date = "10/01/2023" #temporary fix
     else :
-        date = datetime.strptime(date, '%Y-%m-%d')
+        date = datetime.strptime(date, '%Y-%m-%d') #this is wrong and have to fix
     standings = statsapi.standings_data(leagueId="103,104", division="all", include_wildcard=True, season=None, standingsTypes=None, date=date)
     return standings
 
