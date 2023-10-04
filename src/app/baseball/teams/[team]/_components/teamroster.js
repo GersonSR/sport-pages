@@ -11,6 +11,7 @@ const TeamRoster = ({ team }) => {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false); //Change to false once done with roster work
   let formattedDate = date.toLocaleDateString("en-CA")
+  let todayMax = new Date().toLocaleDateString("en-CA");
 
   const getRoster = async () => {
     try {
@@ -55,7 +56,7 @@ const TeamRoster = ({ team }) => {
         <h2>Team Roster</h2>
         <form className={styles["roster-filter"]} onSubmit={rosterUpdateHandler}>
           <label htmlFor="roster-date">
-            Date: <input type="date" id="roster-date" name="roster-date" max={formattedDate} value={formattedDate} onChange={handleDateChange}/>
+            Date: <input type="date" id="roster-date" name="roster-date" max={todayMax} value={formattedDate} onChange={handleDateChange}/>
           </label>
           <button>Search</button>
         </form>
