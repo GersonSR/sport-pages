@@ -2,6 +2,8 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  border-bottom: 1px solid lightgray;
+  padding-top: .5rem;
 }
 
 .roster-header {
@@ -11,3 +13,6 @@
   width: 100%;
 }
 
+.roster-filter {
+  margin: .5rem;
+}
