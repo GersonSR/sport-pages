@@ -22,7 +22,7 @@ const TeamRoster = ({ team }) => {
       }
       else {
         const data = await response.json();
-        console.log(data);
+        // console.log(data);
         setRoster(data.roster);
       }
     } catch (error) {

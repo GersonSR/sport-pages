@@ -4,7 +4,7 @@ import styles from "./teaminfo.module.css"
 import Link from "next/link";
 
 const TeamInfo = ({ team }) => {
-  console.log(team);
+  // console.log(team);
   const teamCode = team["teamCode"].toUpperCase();
   return (
     <div className={styles["info-container"]}>

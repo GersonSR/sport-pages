@@ -54,7 +54,7 @@ const Roster = (props) => {
     }
   }
 
-  console.log("Created Roster");
+  // console.log("Created Roster");
 
   return (
     <div className={styles["player-container"]}>

@@ -3,11 +3,11 @@
 import StatsTable from "./_statleaders/statstable";
 import styles from "./teamstatleaders.module.css";
 
+import { useState, useCallback, useEffect } from "react";
+
 const TeamStatLeaders = ({ team }) => {
-  console.log(team);
   const teamID = team.id;
   let categories = [
-    [
       {
         displayName: "airOuts",
         stat: "Air Outs",
@@ -288,41 +288,71 @@ const TeamStatLeaders = ({ team }) => {
         displayName: "wins",
         stat: "Wins",
       },
-    ],
   ];
-  const [leadersLoading, setLeadersLoading] = useState(false);
+  const [leadersLoading, setLeadersLoading] = useState(true);
+  const [statLeaders, setStatLeaders] = useState([]);
+  const [statSeason, setStatSeason] = useState(new Date().getFullYear());
 
-  let selectedCategory = "Home Runs";
-  let selectedState = "R";
-  let selectedSeason = new Date().getFullYear();
+  let selectedCategory = "HomeRuns";
+  let selectedGroup = "R";
+  let seasonMax = new Date().getFullYear();
 
-  const fetchStatCategories = useCallback(async () => {
-    const response = await fetch("/api/mlb/teamleaders/categories");
+  const fetchStatLeaders = useCallback(async (category, group, season, teamID) => {
+    const response = await fetch(`/api/mlb/team/${teamID}/stats/${category}/${season}/${group}/5`);
     if (!response.ok) {
-      throw new Error("Team could not get retrieved!");
+      throw new Error("Stat leaders could not get retrieved!");
     } else {
       const data = await response.json();
-      categories = data;
+      setStatLeaders(statLeaders);
+      console.log(data);
     }
-    setCategoriesLoading(true);
+    setLeadersLoading(false);
   }, []);
 
   useEffect(() => {
-    fetchLeaders();
+    
   }, []);
+
+  const statLeaderSearchHandler = (event) => {
+    event.preventDefault();
+    selectedCategory = event.target[0].value;
+    selectedGroup = event.target[1].value;
+    fetchStatLeaders(selectedCategory, selectedGroup, statSeason, teamID);
+  }
+
+  const yearChangeHandler = (event) => {
+    setStatSeason(event.target.value);
+  }
 
   return (
     <div>
       <div>
         <span>{team.name} Team Stat Leaders</span>
-        <form>
-          <select></select>
-          <select></select>
-          <input type="number"></input>
+        <form onSubmit={statLeaderSearchHandler}>
+          <label htmlFor="stats-category-selector">Stat Category: </label>
+          <select name="stats-category-selector" id="stats-category-selector">
+            {
+              categories.map((category) => {
+                let categoryValue = category.displayName;
+                let categoryDisplayName = category.stat;
+                return (
+                  <option value={categoryValue}>{categoryDisplayName}</option>
+                );
+              })
+            }
+          </select>
+          <label htmlFor="stat-group-selector">Stat Type: </label>
+          <select name="stat-group=selector">
+            <option value="R">Regular Season</option>
+            <option value="P">Post Season</option>
+            <option value="S">Spring Training</option>
+          </select>
+          <label htmlFor="stat-season-input">Season: </label>
+          <input name="stat-season-input" type="number" min="1900" max={seasonMax} placeholder={seasonMax} size="4" value={statSeason} onChange={yearChangeHandler}></input>
           <button>Search</button>
         </form>
       </div>
-      <StatsTable />
+      <StatsTable players={statLeaders} team={teamID}/>
     </div>
   );
 };

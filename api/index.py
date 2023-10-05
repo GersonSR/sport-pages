@@ -53,6 +53,7 @@ def mlb_team_stats(team_id, category, season, game_type, amount):
 
     category = category.replace("%20", "")
 
+    print(season, game_type, amount, category)
     stats = statsapi.team_leader_data(team_id, category, season, game_type, amount)
     return stats
 
