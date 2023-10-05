@@ -51,6 +51,8 @@ def mlb_team_stats(team_id, category, season, game_type, amount):
     
     amount = int(amount)
 
+    category = category.replace("%20", "")
+
     stats = statsapi.team_leader_data(team_id, category, season, game_type, amount)
     return stats
 
@@ -66,7 +68,7 @@ def mlb_teamleaders_categories():
 
 @app.route("/api/mlb/players/<player_id>/")
 def mlb_player(player_id) :
-    player_data = statsapi.player_stat_data(player_id) #Later add type and group, view Docs.
+    player_data = statsapi.player_stat_data(player_id) #Later add type and group, view docs and commented out code from above.
     return player_data
 
 @app.route("/api/mlb/playersearch/<name>")
