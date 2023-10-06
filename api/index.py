@@ -75,8 +75,11 @@ def mlb_player(player_id) :
 @app.route("/api/mlb/playersearch/<name>")
 def mlb_player_search(name) :
     name = name.replace("%20", " ") #Assumption here is both first and last name are being searched
-    
-    player_data = statsapi.lookup_player(name)
-    
-    
+    player_data = statsapi.lookup_player(name)    
     return player_data
+
+@app.route("/api/mlb/team/<team_id>/coaches/<date>")
+def mlb_team_coaches(team_id, date):
+    date = date.replace("-", "/")
+    roster = statsapi.get('team_coaches', {'teamId': team_id, 'date': date})
+    return roster
