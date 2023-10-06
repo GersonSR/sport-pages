@@ -55,7 +55,6 @@ const Roster = (props) => {
   }
 
   // console.log("Created Roster");
-
   return (
     <div className={styles["player-container"]}>
       <PositionCard position="Pitchers" players={pitchers} />

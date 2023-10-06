@@ -4,8 +4,9 @@ import styles from "./teamroster.module.css";
 import Roster from "./_roster/roster";
 
 import { useEffect, useState } from "react";
+import Coaches from "./_roster/coaches";
 
-const TeamRoster = ({ team }) => {
+const TeamRoster = ({ team, type }) => {
   const [roster, setRoster] = useState([]);
   const [date, setDate] = useState(new Date());
   const [error, setError] = useState(null);
@@ -16,7 +17,12 @@ const TeamRoster = ({ team }) => {
   const getRoster = async () => {
     try {
       let apiDate = date.toLocaleDateString("en-US").replaceAll("/", "-");
-      const response = await fetch(`/api/mlb/team/${team.id}/roster/${apiDate}`);
+      let response;
+      if (type === "players") {
+        response = await fetch(`/api/mlb/team/${team.id}/roster/${apiDate}`);
+      } else if (type === "coaches") {
+        response = await fetch(`/api/mlb/team/${team.id}/coaches/${apiDate}`);
+      }
       if (!response.ok) {
         throw new Error("Roster could not get retrieved!");
       }
@@ -53,7 +59,7 @@ const TeamRoster = ({ team }) => {
   return (
     <div className={styles["roster-container"]}>
       <div className={styles["roster-header"]}>
-        <h2>Team Roster</h2>
+        {((type === "players") ? <h2>Team Roster</h2> : <h2>Team Personnel</h2>)}
         <form className={styles["roster-filter"]} onSubmit={rosterUpdateHandler}>
           <label htmlFor="roster-date">
             Date: <input type="date" id="roster-date" name="roster-date" max={todayMax} value={formattedDate} onChange={handleDateChange}/>
@@ -63,7 +69,7 @@ const TeamRoster = ({ team }) => {
       </div>
       {!isLoaded && <div>Loading...</div>}
       {isLoaded && (roster.length > 0) && 
-        <Roster roster={roster} />
+        ((type === "players") ? <Roster roster={roster}/> : <Coaches coaches={roster}/>)
       }
     </div>
   );

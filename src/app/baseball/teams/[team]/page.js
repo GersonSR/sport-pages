@@ -42,7 +42,8 @@ const TeamPage = ({params}) => {
       {isLoaded && (teamData.length > 0) && (
         <div className={styles["team-container"]}>
           <TeamInfo team={teamObject} />
-          <TeamRoster team={teamObject} />
+          <TeamRoster team={teamObject} type="players"/>
+          <TeamRoster team={teamObject} type="coaches"/>
           <TeamStatLeaders team={teamObject} />
         </div>
       )}

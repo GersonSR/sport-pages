@@ -6,7 +6,6 @@ const PositionTable = ({ players }) => {
   if (players.length === 0) {
     nonEmptyPlayers = false;
   }
-
   return (
     <Fragment>
       {!nonEmptyPlayers && <div>No Players Found</div>}

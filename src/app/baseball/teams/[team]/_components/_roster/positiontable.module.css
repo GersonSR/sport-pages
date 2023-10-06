@@ -3,6 +3,7 @@
   font-size: large;
   width: 100%;
   text-align: left;
+  table-layout: fixed;
 }
 
 .player-table td {
