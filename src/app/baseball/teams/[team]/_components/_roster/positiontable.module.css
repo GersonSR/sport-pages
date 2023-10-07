@@ -3,13 +3,24 @@
   font-size: large;
   width: 100%;
   text-align: left;
-  table-layout: fixed;
+  table-layout: auto;
 }
 
 .player-table td {
   border-bottom: 1px solid gray;
   padding: .25rem 0 .25rem 0;
+  white-space: nowrap;
 }
+
+.player-table th {
+  text-align: center;
+}
+
+
+.player-table th:nth-child(2) {
+  text-align: left;
+}
+
 
 .player-table tr {
   border-bottom: 1px solid gray;
