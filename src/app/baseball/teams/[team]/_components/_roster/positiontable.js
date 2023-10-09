@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import styles from "./positiontable.module.css";
+import Link from "next/link";
 
 const PositionTable = ({ players }) => {
   let nonEmptyPlayers = true;
@@ -20,7 +21,7 @@ const PositionTable = ({ players }) => {
         <tbody>
           {players.map((player) => (
             <tr key={player.person.id}>
-              <td>{player.person.fullName}</td>
+              <td><Link href={`/baseball/player/${player.person.id}`} className={styles["person-link"]}>{player.person.fullName}</Link></td>
               <td>{player.jerseyNumber}</td>
               <td>{player.position.abbreviation}</td>
             </tr>
