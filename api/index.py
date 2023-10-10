@@ -74,7 +74,7 @@ def mlb_people(persons_id) :
 
 @app.route("/api/mlb/person/<person_id>")
 def mlb_person(person_id) :
-    player_data = statsapi.get("person", {"personId": person_id, "hydrate": "stats(group=[hitting,pitching,fielding],type=[career], sportId=1)"})
+    player_data = statsapi.get("person", {"personId": person_id})
     return player_data
 
 @app.route("/api/mlb/player/info/<player_id>")
