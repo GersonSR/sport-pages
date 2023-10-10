@@ -67,18 +67,18 @@ def mlb_teamleaders_categories():
 #     player_data = statsapi.player_stat_data(player_id) #Later add type and group, view Docs.
 #     return player_data
 
-@app.route("/api/mlb/people/<persons_id>/")
+@app.route("/api/mlb/people/<persons_id>")
 def mlb_people(persons_id) :
     player_data = statsapi.get("people", {"personIds": persons_id})
     return player_data
 
-@app.route("/api/mlb/person/<person_id>/")
+@app.route("/api/mlb/person/<person_id>")
 def mlb_person(person_id) :
-    player_data = statsapi.get("person", {"personId": person_id}) 
+    player_data = statsapi.get("person", {"personId": person_id, "hydrate": "stats(group=[hitting,pitching,fielding],type=[career], sportId=1)"})
     return player_data
 
-@app.route("/api/mlb/player/<player_id>/")
-def mlb_player(player_id) :
+@app.route("/api/mlb/player/info/<player_id>")
+def mlb_player_data(player_id) :
     player_data = statsapi.get("person", {"personId": player_id, "hydrate": "stats(group=[hitting,pitching,fielding],type=[career], sportId=1)"})
     return player_data
 
