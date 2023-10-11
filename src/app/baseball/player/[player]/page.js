@@ -3,6 +3,10 @@
 import { Fragment, useState, useEffect, useCallback } from "react";
 import styles from "./page.module.css";
 
+import PlayerContainer from "./_components/playercontainer";
+import PlayerStats from "./_components/playerstats";
+import PlayerInfo from "./_components/playerinfo";
+
 const BBPlayerPage = ({ params }) => {
   const [playerData, setPlayerData] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -34,8 +38,12 @@ const BBPlayerPage = ({ params }) => {
 
   return (
     <Fragment>
-      {!loading && !error && <div>It worked!</div>}
-      {loading && !error && <div>Baseball Player ID: {params.player}</div>}
+      {!loading && !error && <div>It's loading!</div>}
+      {loading && !error && 
+        <PlayerContainer>
+          <PlayerInfo/>
+          <PlayerStats/>
+        </PlayerContainer>}
     </Fragment>
   );
 };
