@@ -1,6 +1,8 @@
+import styles from "./playercontainer.module.css"
+
 const PlayerContainer = (props) => {
   return (
-    <div>{props.children}</div>
+    <div className={styles["player-container"]}>{props.children}</div>
   );
 };
 

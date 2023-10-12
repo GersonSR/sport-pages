@@ -1,0 +1,24 @@
+.player-info-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.player-name {
+  padding-right: 2rem;
+}
+
+.player-rundown {
+  display: inherit;
+  flex-direction: column;
+  align-items: left;
+}
+
+.player-rundown_item {
+  display: inherit;
+  flex-direction: row;
+}
+
+.player-rundown_item__value {
+  padding-left: .5rem;
+}

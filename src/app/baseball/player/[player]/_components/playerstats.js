@@ -1,6 +1,8 @@
+import styles from "./playerstats.module.css";
+
 const PlayerStats = (props) => {
   return (
-    <div>Player Stats Here!</div>
+    <div className={styles["player-info-container"]}>Player Stats Here!</div>
   );
 };
 
