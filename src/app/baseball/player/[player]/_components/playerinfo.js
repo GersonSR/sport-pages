@@ -3,6 +3,31 @@ import styles from "./playerinfo.module.css";
 const PlayerInfo = ({ player }) => {
   const playerInfo = player.people[0];
 
+  let hometown = "";
+  let homecity = "";
+  let homestate = "";
+  let homecountry = "";
+
+  if (playerInfo.birthCity) {
+    homecity = playerInfo.birthCity;
+  }
+  if (playerInfo.birthStateProvince) {
+    homestate = playerInfo.birthStateProvince;
+  }
+  if (playerInfo.birthCountry) {
+    homecountry = playerInfo.birthCountry;
+  }
+
+  hometown = homecity + "  " + homestate + "  " + homecountry;
+
+  if (hometown === "    ") {
+    hometown = "N/A";
+  } else {
+    hometown = hometown.trim();
+    console.log(hometown);
+    hometown = hometown.replace(/\s{2,}/g, ", ");
+  }
+
   return (
     <div className={styles["player-info-container"]}>
       <div className={styles["player-name"]}>
@@ -32,11 +57,7 @@ const PlayerInfo = ({ player }) => {
         <div className={styles["player-rundown_item"]}>
           <div className={styles["player-rundown_item__name"]}>Hometown:</div>
           <div className={styles["player-rundown_item__value"]}>
-            {playerInfo.birthCity &&
-            playerInfo.birthStateProvince &&
-            playerInfo.birthCountry
-              ? `${playerInfo.birthCity}, ${playerInfo.birthStateProvince}, ${playerInfo.birthCountry}`
-              : "N/A"}
+            {hometown ? hometown : "N/A"}
           </div>
         </div>
         <div className={styles["player-rundown_item"]}>
@@ -84,7 +105,10 @@ const PlayerInfo = ({ player }) => {
             Primary Position:
           </div>
           <div className={styles["player-rundown_item__value"]}>
-            {playerInfo.primaryPosition.name && playerInfo.primaryPosition.abbreviation ? ` ${playerInfo.primaryPosition.name} (${playerInfo.primaryPosition.abbreviation})` : "N/A"}
+            {playerInfo.primaryPosition.name &&
+            playerInfo.primaryPosition.abbreviation
+              ? ` ${playerInfo.primaryPosition.name} (${playerInfo.primaryPosition.abbreviation})`
+              : "N/A"}
           </div>
         </div>
         <div className={styles["player-rundown_item"]}>
@@ -92,7 +116,9 @@ const PlayerInfo = ({ player }) => {
             Throwing Hand:
           </div>
           <div className={styles["player-rundown_item__value"]}>
-            {playerInfo.pitchHand.description ? playerInfo.pitchHand.description : "N/A"}
+            {playerInfo.pitchHand.description
+              ? playerInfo.pitchHand.description
+              : "N/A"}
           </div>
         </div>
         <div className={styles["player-rundown_item"]}>
@@ -100,7 +126,9 @@ const PlayerInfo = ({ player }) => {
             Batting Side:
           </div>
           <div className={styles["player-rundown_item__value"]}>
-            {playerInfo.batSide.description ? playerInfo.batSide.description : "N/A"}
+            {playerInfo.batSide.description
+              ? playerInfo.batSide.description
+              : "N/A"}
           </div>
         </div>
       </div>
