@@ -3,6 +3,7 @@
 # dependencies
 /node_modules
 /.pnp
+/api/__pycache__
 .pnp.js
 
 # testing

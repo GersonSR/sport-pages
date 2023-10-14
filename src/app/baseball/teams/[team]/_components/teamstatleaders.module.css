@@ -26,3 +26,7 @@
 .form-item{
   padding: .5rem .25rem 0 0;
 }
+
+#stat-season-input {
+  width: 3.5rem;
+}

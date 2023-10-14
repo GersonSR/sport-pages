@@ -359,6 +359,7 @@ const TeamStatLeaders = ({ team }) => {
           <div className={styles["form-item"]}>
             <label htmlFor="stat-season-input">Season: </label>
             <input
+              id={styles["stat-season-input"]}
               name="stat-season-input"
               type="number"
               min="1900"
