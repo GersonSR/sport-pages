@@ -7,14 +7,14 @@ const PlayerStats = ({ player }) => {
   let content = <div>Player Stats Here!</div>;
   if (playerPosition === "P") {
     content = 
-      <div className={styles["player-info-container"]}>
+      <div className={styles["player-stats-container"]}>
         <StatsTable stats={playerStatsObjects} type="pitching" grouping="career"/>
         <StatsTable stats={playerStatsObjects} type="fielding" grouping="career"/>
         <StatsTable stats={playerStatsObjects} type="hitting" grouping="career"/>
       </div>
   } else {
     content = 
-      <div className={styles["player-info-container"]}>
+      <div className={styles["player-stats-container"]}>
         <StatsTable stats={playerStatsObjects} type="hitting" grouping="career"/>
         <StatsTable stats={playerStatsObjects} type="fielding" grouping="career"/>
         <StatsTable stats={playerStatsObjects} type="pitching" grouping="career"/>
