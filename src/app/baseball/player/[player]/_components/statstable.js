@@ -1,5 +1,7 @@
 import { Fragment } from "react";
 
+import styles from "./statstable.module.css";
+
 const StatsTable = (props) => {
   const category = props.type.charAt(0).toUpperCase() + props.type.slice(1);
   const groupingType = props.grouping;
@@ -304,7 +306,7 @@ const StatsTable = (props) => {
       for (let i = 0; i < statArray.length; i++) {
         statObjects.push({
           position: statArray[i].position.abbreviation,
-          stats: statArray[0].stat,
+          stats: statArray[i].stat,
         });
       }
     }
@@ -318,50 +320,48 @@ const StatsTable = (props) => {
   let statCount = statObjects.length;
   return (
     <Fragment>
-      {statCount < 1 && <div>No {category} Stats Avaliable</div>}
-      {statCount > 0 && (
-        <div>
-          {statObjects.map((statObject) => {
-            let content = (
-              <table key={statObject.position}>
-                <caption>{category}</caption>
-                <thead>
-                  <tr>
-                    <th>
-                      {groupingType.charAt(0).toUpperCase() +
-                        groupingType.slice(1)}
-                    </th>
-                    {Object.keys(statObject.stats).map((key) => {
-                      let category = "";
-                      if (key in nameLibrary) {
-                        category = nameLibrary[key].displayName;
-                      } else {
-                        category = key;
-                      }
+      {statObjects.length < 1 && <div>No {category} Stats Avaliable</div>}
+      {statObjects.length > 0 && (
+        <div  className={styles["stats-table"]}>
+          <table>
+            <caption>{category}</caption>
+            <thead>
+              <tr>
+                <th>
+                  {groupingType.charAt(0).toUpperCase() + groupingType.slice(1)}
+                </th>
+                {Object.keys(statObjects[0].stats).map((key) => {
+                  let category = "";
+                  if (key in nameLibrary) {
+                    category = nameLibrary[key].displayName;
+                  } else {
+                    category = key;
+                  }
 
-                      if (key === "position") {
-                        return 
-                      }
-                      return <th key={key}>{category}</th>;
-                    })}
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td></td>
+                  if (key === "position") {
+                    return;
+                  }
+                  return <th key={key + "head"}>{category}</th>;
+                })}
+              </tr>
+            </thead>
+            <tbody>
+              {statObjects.map((statObject) => {
+                return (
+                  <tr key={statObject.position}>
+                    <td>{statObject.position}</td>
                     {Object.keys(statObject.stats).map((key) => {
                       let stat = statObject.stats[key];
                       if (typeof stat === "object") {
-                        return
+                        return;
                       }
-                      return <td key={key}>{stat}</td>;
+                      return <td key={key + statObject.position}>{stat}</td>;
                     })}
                   </tr>
-                </tbody>
-              </table>
-            );
-            return content;
-          })}
+                );
+              })}
+            </tbody>
+          </table>
         </div>
       )}
     </Fragment>
