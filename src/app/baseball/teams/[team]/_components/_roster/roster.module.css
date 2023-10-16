@@ -1,10 +1,8 @@
 .player-container {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
+  justify-content: space-between; 
+  flex-wrap: wrap;
 }
-
 .player-container div {
-  width: 100%;
 }

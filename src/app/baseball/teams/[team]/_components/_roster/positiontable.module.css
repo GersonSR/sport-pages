@@ -1,7 +1,6 @@
 .player-table {
   border-collapse: collapse;
   font-size: large;
-  width: 100%;
   text-align: left;
   table-layout: auto;
 }
