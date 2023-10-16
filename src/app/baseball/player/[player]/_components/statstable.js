@@ -20,32 +20,35 @@ const StatsTable = (props) => {
       statObjects.push({ position: category, stats: statArray[0].stat });
     } else {
       for (let i = 0; i < statArray.length; i++) {
-        statObjects.push({ position: statArray[i].position.abbreviation, stats: statArray[0].stat });
+        statObjects.push({
+          position: statArray[i].position.abbreviation,
+          stats: statArray[0].stat,
+        });
       }
     }
-  }
+  };
 
   if (props.grouping === "career") {
     careerFunction();
-
   }
 
   console.log(statObjects);
   let statCount = statObjects.length;
   console.log(statCount);
 
-
   return (
     <Fragment>
       {statCount < 1 && <div>No {category} Stats Avaliable</div>}
-      {statCount > 0 && groupingType === "career" &&
-        <table>
-          <caption>{category}</caption>
-          <thead>
-          </thead>
-        </table>}
+      {statCount > 0 && (
+        <div>
+          <table>
+            <caption>{category}</caption>
+            <thead></thead>
+          </table>
+        </div>
+      )}
     </Fragment>
   );
-}
+};
 
 export default StatsTable;
