@@ -1,3 +1,9 @@
 .player-info-container {
   padding: 2rem 0 2rem 0;
+  width: 100%;
+}
+
+.category {
+  font-weight: bold;
+  text-align: center;
 }

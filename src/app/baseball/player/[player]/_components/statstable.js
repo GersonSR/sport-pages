@@ -21,10 +21,35 @@ const StatsTable = (props) => {
       displayName: "At Bats",
       stat: "atBats",
     },
+    atBatsPerHomeRun: {
+      displayName: "At Bats per Home Run",
+      stat: "atBatsPerHomeRun",
+    },
+    avg: {
+      displayName: "Batting Average",
+      stat: "avg",
+    },
+
+    babip: {
+      displayName: "Batting Average on Balls in Play (BABIP)",
+      stat: "babip",
+    },
+
+    balls: {
+      displayName: "Balls",
+      stat: "balls",
+    },
+
     balk: {
       displayName: "Balk",
       stat: "balk",
     },
+
+    baseOnBalls: {
+      displayName: "Base on Balls (BB)",
+      stat: "baseOnBalls",
+    },
+
     battingAverage: {
       displayName: "Batting Average",
       stat: "battingAverage",
@@ -77,6 +102,17 @@ const StatsTable = (props) => {
       stat: "extraBaseHits",
       displayName: "Extra Base Hits",
     },
+
+    fielding : {
+      stat: "fielding",
+      displayName: "Fielding",
+    },
+
+    games : {
+      stat: "games",
+      displayName: "Games",
+    },
+
     fieldingPercentage: {
       stat: "fieldingPercentage",
       displayName: "Fielding Percentage",
@@ -97,9 +133,9 @@ const StatsTable = (props) => {
       stat: "gamesStarted",
       displayName: "Games Started",
     },
-    groundIntoDoublePlays: {
-      stat: "groundIntoDoublePlays",
-      displayName: "Ground Into Double Plays",
+    groundIntoDoublePlay: {
+      stat: "groundIntoDoublePlay",
+      displayName: "Ground Into Double Play",
     },
     groundoutToFlyoutRatio: {
       stat: "groundoutToFlyoutRatio",
@@ -109,6 +145,17 @@ const StatsTable = (props) => {
       stat: "groundOuts",
       displayName: "Ground Outs",
     },
+
+    groundOutsToAirouts: {
+      stat: "groundOutsToAirouts",
+      displayName: "Ground Outs to Air Outs",
+    },
+
+    hitByPitch: {
+      stat: "hitByPitch",
+      displayName: "Hit by Pitch",
+    },
+
     hitByPitches: {
       stat: "hitByPitches",
       displayName: "Hit by Pitches",
@@ -145,6 +192,12 @@ const StatsTable = (props) => {
       stat: "intentionalWalks",
       displayName: "Intentional Walks",
     },
+
+    leftOnBase: {
+      stat: "leftOnBase",
+      displayName: "Left on Base",
+    },
+
     losses: {
       stat: "losses",
       displayName: "Losses",
@@ -157,18 +210,39 @@ const StatsTable = (props) => {
       stat: "onBasePercentage",
       displayName: "On Base Percentage (OBP)",
     },
+
+    obp: {
+      stat: "obp",
+      displayName: "On Base Percentage (OBP)",
+    },
+
+    ops : {
+      stat: "ops",
+      displayName: "On Base Plus Slugging (OPS)",
+    },
+    
     onBasePlusSlugging: {
       stat: "onBasePlusSlugging",
       displayName: "On Base Plus Slugging (OPS)",
     },
+
+
     onfieldAssists: {
       stat: "outfieldAssists",
       displayName: "Outfield Assists",
     },
+
+    
     passedBalls: {
       stat: "passedBalls",
       displayName: "Passed Balls",
     },
+
+    plateAppearances : {
+      stat: "plateAppearances",
+      displayName: "Plate Appearances",
+    },
+
     pickoffs: {
       stat: "pickoffs",
       displayName: "Pickoffs",
@@ -189,6 +263,12 @@ const StatsTable = (props) => {
       stat: "rangeFactorPer9Inn",
       displayName: "Range Factor per 9 Innings",
     },
+
+    rbi : {
+      stat: "rbi",
+      displayName: "Runs Batted In (RBI)",
+    },
+
     runsBattedIn: {
       stat: "runsBattedIn",
       displayName: "Runs Batted In (RBI)",
@@ -197,10 +277,22 @@ const StatsTable = (props) => {
       stat: "runs",
       displayName: "Runs",
     },
+
+    sacBunts : {
+      stat: "sacBunts",
+      displayName: "Sacrifice Bunts",
+    },
+
     sacrificeBunts: {
       stat: "sacrificeBunts",
       displayName: "Sacrifice Bunts",
     },
+
+    sacFlies : {
+      stat: "sacFlies",
+      displayName: "Sacrifice Flies",
+    },
+
     sacrificeFlies: {
       stat: "sacrificeFlies",
       displayName: "Sacrifice Flies",
@@ -217,6 +309,12 @@ const StatsTable = (props) => {
       stat: "shutouts",
       displayName: "Shutouts",
     },
+
+    slg : {
+      stat: "slg",
+      displayName: "Slugging Percentage (SLG)",
+    },
+    
     sluggingPercentage: {
       stat: "sluggingPercentage",
       displayName: "Slugging Percentage (SLG)",
@@ -229,6 +327,12 @@ const StatsTable = (props) => {
       stat: "stolenBases",
       displayName: "Stolen Bases",
     },
+
+    strikeOuts : {
+      stat: "strikeOuts",
+      displayName: "Strike Outs",
+    },
+
     strikeouts: {
       stat: "strikeouts",
       displayName: "Strikeouts",
@@ -257,7 +361,7 @@ const StatsTable = (props) => {
       stat: "totalPlateAppearances",
       displayName: "Total Plate Appearances",
     },
-    triplePlayes: {
+    triplePlays: {
       stat: "triplePlays",
       displayName: "Triple Plays",
     },
@@ -320,49 +424,54 @@ const StatsTable = (props) => {
   let statCount = statObjects.length;
   return (
     <Fragment>
-      {statObjects.length < 1 && <div>No {category} Stats Avaliable</div>}
+      {statObjects.length < 1 && (
+        <div className={styles["category"]}>No {category} Stats Avaliable</div>
+      )}
       {statObjects.length > 0 && (
-        <div  className={styles["stats-table"]}>
-          <table>
-            <caption>{category}</caption>
-            <thead>
-              <tr>
-                <th>
-                  {groupingType.charAt(0).toUpperCase() + groupingType.slice(1)}
-                </th>
-                {Object.keys(statObjects[0].stats).map((key) => {
-                  let category = "";
-                  if (key in nameLibrary) {
-                    category = nameLibrary[key].displayName;
-                  } else {
-                    category = key;
-                  }
+        <Fragment>
+          <div className={styles["category"]}>{category}</div>
+          <div className={styles["stats-table"]}>
+            <table>
+              <thead>
+                <tr>
+                  <th>
+                    {groupingType.charAt(0).toUpperCase() +
+                      groupingType.slice(1)}
+                  </th>
+                  {Object.keys(statObjects[0].stats).map((key) => {
+                    let category = "";
+                    if (key in nameLibrary) {
+                      category = nameLibrary[key].displayName;
+                    } else {
+                      category = key;
+                    }
 
-                  if (key === "position") {
-                    return;
-                  }
-                  return <th key={key + "head"}>{category}</th>;
+                    if (key === "position") {
+                      return;
+                    }
+                    return <th key={key + "head"}>{category}</th>;
+                  })}
+                </tr>
+              </thead>
+              <tbody>
+                {statObjects.map((statObject) => {
+                  return (
+                    <tr key={statObject.position}>
+                      <td>{statObject.position}</td>
+                      {Object.keys(statObject.stats).map((key) => {
+                        let stat = statObject.stats[key];
+                        if (typeof stat === "object") {
+                          return;
+                        }
+                        return <td key={key + statObject.position}>{stat}</td>;
+                      })}
+                    </tr>
+                  );
                 })}
-              </tr>
-            </thead>
-            <tbody>
-              {statObjects.map((statObject) => {
-                return (
-                  <tr key={statObject.position}>
-                    <td>{statObject.position}</td>
-                    {Object.keys(statObject.stats).map((key) => {
-                      let stat = statObject.stats[key];
-                      if (typeof stat === "object") {
-                        return;
-                      }
-                      return <td key={key + statObject.position}>{stat}</td>;
-                    })}
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
+              </tbody>
+            </table>
+          </div>
+        </Fragment>
       )}
     </Fragment>
   );

@@ -1,3 +1,15 @@
 .stats-table {
-  overflow-x: auto;
+  overflow-x: scroll;
+  white-space: nowrap;
+}
+
+
+.stats-table table {
+  border-spacing: .5rem;
+  width: 100%;
+}
+
+.category {
+  font-weight: bold;
+  text-align: center;
 }
