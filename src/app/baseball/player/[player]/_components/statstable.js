@@ -424,6 +424,9 @@ const StatsTable = (props) => {
   };
 
   const careerFunction = () => {
+    if (props.stats === undefined) {
+      return;
+    }
     for (let i = 0; i < props.stats.length; i++) {
       if (props.stats[i].group.displayName === props.type) {
         statArray = props.stats[i].splits;
