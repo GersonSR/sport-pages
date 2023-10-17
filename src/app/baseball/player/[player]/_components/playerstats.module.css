@@ -1,6 +1,8 @@
 .player-info-container {
   padding: 2rem 0 2rem 0;
-  width: 100%;
+  margin-top : 2rem;
+  width: 80%;
+  border: 1px black solid;
 }
 
 .category {

@@ -29,27 +29,30 @@ const StatsTable = (props) => {
       displayName: "Batting Average",
       stat: "avg",
     },
-
     babip: {
       displayName: "Batting Average on Balls in Play (BABIP)",
       stat: "babip",
     },
-
     balls: {
       displayName: "Balls",
       stat: "balls",
     },
-
+    balks: {
+      displayName: "Balks",
+      stat: "balks",
+    },
     balk: {
       displayName: "Balk",
       stat: "balk",
     },
-
     baseOnBalls: {
       displayName: "Base on Balls (BB)",
       stat: "baseOnBalls",
     },
-
+    battersFaced : {
+      displayName: "Batters Faced",
+      stat: "battersFaced",
+    },
     battingAverage: {
       displayName: "Batting Average",
       stat: "battingAverage",
@@ -90,8 +93,16 @@ const StatsTable = (props) => {
       stat: "earnedRun",
       displayName: "Earned Run",
     },
+    earnedRuns: {
+      displayName: "Earned Runs",
+      stat: "earnedRuns",
+    },
     earnedRunAverage: {
       stat: "earnedRunAverage",
+      displayName: "Earned Run Average (ERA)",
+    },
+    era : {
+      stat: "era",
       displayName: "Earned Run Average (ERA)",
     },
     errors: {
@@ -102,17 +113,10 @@ const StatsTable = (props) => {
       stat: "extraBaseHits",
       displayName: "Extra Base Hits",
     },
-
     fielding : {
       stat: "fielding",
       displayName: "Fielding",
     },
-
-    games : {
-      stat: "games",
-      displayName: "Games",
-    },
-
     fieldingPercentage: {
       stat: "fieldingPercentage",
       displayName: "Fielding Percentage",
@@ -120,6 +124,14 @@ const StatsTable = (props) => {
     flyouts: {
       stat: "flyouts",
       displayName: "Flyouts",
+    },
+    games : {
+      stat: "games",
+      displayName: "Games",
+    },
+    gamesPitched: {
+      stat: "gamesPitched",
+      displayName: "Games Pitched",
     },
     gamesFinished: {
       stat: "gamesFinished",
@@ -145,17 +157,14 @@ const StatsTable = (props) => {
       stat: "groundOuts",
       displayName: "Ground Outs",
     },
-
     groundOutsToAirouts: {
       stat: "groundOutsToAirouts",
       displayName: "Ground Outs to Air Outs",
     },
-
     hitByPitch: {
       stat: "hitByPitch",
       displayName: "Hit by Pitch",
     },
-
     hitByPitches: {
       stat: "hitByPitches",
       displayName: "Hit by Pitches",
@@ -163,6 +172,10 @@ const StatsTable = (props) => {
     hitBatsman: {
       stat: "hitBatsman",
       displayName: "Hit Batsman",
+    },
+    hitBatsmen: {
+      stat: "hitBatsmen",
+      displayName: "Hit Batsmen",
     },
     hits: {
       stat: "hits",
@@ -180,9 +193,21 @@ const StatsTable = (props) => {
       stat: "homeRuns",
       displayName: "Home Runs",
     },
+    homeRunsPer9: {
+      stat: "homeRunsPer9",
+      displayName: "Home Runs per 9 Innings",
+    },
     innings: {
       stat: "innings",
       displayName: "Innings",
+    },
+    inheritedRunners: {
+      stat: "inheritedRunners",
+      displayName: "Inherited Runners",
+    },
+    inheritedRunnersScored: {
+      stat: "inheritedRunnersScored",
+      displayName: "Inherited Runners Scored",
     },
     inningsPitched: {
       stat: "inningsPitched",
@@ -192,12 +217,10 @@ const StatsTable = (props) => {
       stat: "intentionalWalks",
       displayName: "Intentional Walks",
     },
-
     leftOnBase: {
       stat: "leftOnBase",
       displayName: "Left on Base",
     },
-
     losses: {
       stat: "losses",
       displayName: "Losses",
@@ -210,39 +233,34 @@ const StatsTable = (props) => {
       stat: "onBasePercentage",
       displayName: "On Base Percentage (OBP)",
     },
-
     obp: {
       stat: "obp",
       displayName: "On Base Percentage (OBP)",
     },
-
+    outs: {
+      stat: "outs",
+      displayName: "Outs",
+    },
     ops : {
       stat: "ops",
       displayName: "On Base Plus Slugging (OPS)",
     },
-    
     onBasePlusSlugging: {
       stat: "onBasePlusSlugging",
       displayName: "On Base Plus Slugging (OPS)",
     },
-
-
     onfieldAssists: {
       stat: "outfieldAssists",
       displayName: "Outfield Assists",
     },
-
-    
     passedBalls: {
       stat: "passedBalls",
       displayName: "Passed Balls",
     },
-
     plateAppearances : {
       stat: "plateAppearances",
       displayName: "Plate Appearances",
     },
-
     pickoffs: {
       stat: "pickoffs",
       displayName: "Pickoffs",
@@ -263,12 +281,10 @@ const StatsTable = (props) => {
       stat: "rangeFactorPer9Inn",
       displayName: "Range Factor per 9 Innings",
     },
-
     rbi : {
       stat: "rbi",
       displayName: "Runs Batted In (RBI)",
     },
-
     runsBattedIn: {
       stat: "runsBattedIn",
       displayName: "Runs Batted In (RBI)",
@@ -277,22 +293,22 @@ const StatsTable = (props) => {
       stat: "runs",
       displayName: "Runs",
     },
-
+    runsScoredPer9: {
+      stat: "runsScoredPer9",
+      displayName: "Runs Scored per 9 Innings",
+    },
     sacBunts : {
       stat: "sacBunts",
       displayName: "Sacrifice Bunts",
     },
-
     sacrificeBunts: {
       stat: "sacrificeBunts",
       displayName: "Sacrifice Bunts",
     },
-
     sacFlies : {
       stat: "sacFlies",
       displayName: "Sacrifice Flies",
     },
-
     sacrificeFlies: {
       stat: "sacrificeFlies",
       displayName: "Sacrifice Flies",
@@ -309,12 +325,10 @@ const StatsTable = (props) => {
       stat: "shutouts",
       displayName: "Shutouts",
     },
-
     slg : {
       stat: "slg",
       displayName: "Slugging Percentage (SLG)",
     },
-    
     sluggingPercentage: {
       stat: "sluggingPercentage",
       displayName: "Slugging Percentage (SLG)",
@@ -327,12 +341,18 @@ const StatsTable = (props) => {
       stat: "stolenBases",
       displayName: "Stolen Bases",
     },
-
+    strikes: {
+      stat: "strikes",
+      displayName: "Strikes",
+    },
     strikeOuts : {
       stat: "strikeOuts",
       displayName: "Strike Outs",
     },
-
+    strikePercentage: {
+      stat: "strikePercentage",
+      displayName: "Strike Percentage",
+    },
     strikeouts: {
       stat: "strikeouts",
       displayName: "Strikeouts",
@@ -341,7 +361,7 @@ const StatsTable = (props) => {
       stat: "strikeoutsPer9Inn",
       displayName: "Strikeouts per 9 Innings",
     },
-    strikeoutWalkRation: {
+    strikeoutWalkRatio: {
       stat: "strikeoutWalkRatio",
       displayName: "Strikeout/Walk Ratio",
     },
@@ -380,6 +400,14 @@ const StatsTable = (props) => {
     walksPer9Inn: {
       stat: "walksPer9Inn",
       displayName: "Walks per 9 Innings",
+    },
+    whip: {
+      stat: "whip",
+      displayName: "Walks and Hits per Inning Pitched (WHIP)",
+    },
+    wildPitches: {
+      stat: "wildPitches",
+      displayName: "Wild Pitches",
     },
     wildPitch: {
       stat: "wildPitch",
