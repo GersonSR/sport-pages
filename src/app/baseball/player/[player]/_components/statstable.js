@@ -506,7 +506,7 @@ const StatsTable = (props) => {
                 <tr>
                   {(groupingType === "YearByYear" || groupingType === "season") &&
                     <th>Year</th>}
-                  <th>Position</th>
+                  {(category === "Fielding") && <th>Position</th>}
                   {Object.keys(statObjects[0].stats).map((key) => {
                     let category = "";
                     if (key in nameLibrary) {
@@ -528,7 +528,7 @@ const StatsTable = (props) => {
                     <tr key={statObject.position}>
                       {(groupingType === "YearByYear" || groupingType === "season") &&
                         <td>{statObject.year}</td>}
-                      <td>{statObject.position}</td>
+                      {(category === "Fielding") && <td>{statObject.position}</td>}
                       {Object.keys(statObject.stats).map((key) => {
                         let stat = statObject.stats[key];
                         if (typeof stat === "object") {

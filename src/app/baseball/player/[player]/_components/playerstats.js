@@ -9,17 +9,17 @@ const PlayerStats = ({ player, grouping }) => {
     content = 
       <div className={styles["player-stats-container"]}>
         <h3 className={styles["category"]}> Career Stats </h3>
-        <StatsTable stats={playerStatsObjects} type="pitching" grouping="YearByYear"/>
-        <StatsTable stats={playerStatsObjects} type="fielding" grouping="YearByYear"/>
-        <StatsTable stats={playerStatsObjects} type="hitting" grouping="YearByYear"/>
+        <StatsTable stats={playerStatsObjects} type="pitching" grouping={grouping}/>
+        <StatsTable stats={playerStatsObjects} type="fielding" grouping={grouping}/>
+        <StatsTable stats={playerStatsObjects} type="hitting" grouping={grouping}/>
       </div>
   } else {
     content = 
       <div className={styles["player-stats-container"]}>
         <h3 className={styles["category"]}> Career Stats </h3>
-        <StatsTable stats={playerStatsObjects} type="hitting" grouping="YearByYear"/>
-        <StatsTable stats={playerStatsObjects} type="fielding" grouping="YearByYear"/>
-        <StatsTable stats={playerStatsObjects} type="pitching" grouping="YearByYear"/>
+        <StatsTable stats={playerStatsObjects} type="hitting" grouping={grouping}/>
+        <StatsTable stats={playerStatsObjects} type="fielding" grouping={grouping}/>
+        <StatsTable stats={playerStatsObjects} type="pitching" grouping={grouping}/>
       </div>  }
 
   return (

@@ -12,7 +12,7 @@ const BBPlayerPage = ({ params }) => {
   const [playerInfo, setPlayerInfo] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [statsType, setStatsType] = useState("YearByYear");
+  const [statsType, setStatsType] = useState("career");
 
   const playerID = params.player;
 
@@ -60,6 +60,12 @@ const BBPlayerPage = ({ params }) => {
       {!loading && !error && playerData && playerInfo &&
         <PlayerContainer>
           <PlayerInfo player={playerInfo}/>
+          <form className={styles["form"]}>
+            <select>
+              <option>Career</option>
+              <option>Year By Year</option>
+            </select>
+          </form>
           <PlayerStats player={playerData} grouping={statsType}/>
         </PlayerContainer>}
     </Fragment>
