@@ -1,11 +1,9 @@
 .coaches-container {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  flex-flow: wrap;
+  flex-wrap: wrap;
+  overflow: auto;
 }
 
 .coach-card {
-  width: 300px;
-  margin: 10px;
 }
