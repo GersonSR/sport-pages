@@ -526,7 +526,7 @@ const StatsTable = (props) => {
               <tbody>
                 {statObjects.map((statObject) => {
                   return (
-                    <tr key={statObject.position + statObject.year}>
+                    <tr key={statObject.position + statObject.year + Math.random()}>
                       {(groupingType === "YearByYear" || groupingType === "season") &&
                         <td>{statObject.year}</td>}
                       {(category === "Fielding") && <td>{statObject.position}</td>}
