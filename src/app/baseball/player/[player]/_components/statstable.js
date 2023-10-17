@@ -49,7 +49,7 @@ const StatsTable = (props) => {
       displayName: "Base on Balls (BB)",
       stat: "baseOnBalls",
     },
-    battersFaced : {
+    battersFaced: {
       displayName: "Batters Faced",
       stat: "battersFaced",
     },
@@ -101,7 +101,7 @@ const StatsTable = (props) => {
       stat: "earnedRunAverage",
       displayName: "Earned Run Average (ERA)",
     },
-    era : {
+    era: {
       stat: "era",
       displayName: "Earned Run Average (ERA)",
     },
@@ -113,7 +113,7 @@ const StatsTable = (props) => {
       stat: "extraBaseHits",
       displayName: "Extra Base Hits",
     },
-    fielding : {
+    fielding: {
       stat: "fielding",
       displayName: "Fielding",
     },
@@ -125,7 +125,7 @@ const StatsTable = (props) => {
       stat: "flyouts",
       displayName: "Flyouts",
     },
-    games : {
+    games: {
       stat: "games",
       displayName: "Games",
     },
@@ -241,7 +241,7 @@ const StatsTable = (props) => {
       stat: "outs",
       displayName: "Outs",
     },
-    ops : {
+    ops: {
       stat: "ops",
       displayName: "On Base Plus Slugging (OPS)",
     },
@@ -257,7 +257,7 @@ const StatsTable = (props) => {
       stat: "passedBalls",
       displayName: "Passed Balls",
     },
-    plateAppearances : {
+    plateAppearances: {
       stat: "plateAppearances",
       displayName: "Plate Appearances",
     },
@@ -281,7 +281,7 @@ const StatsTable = (props) => {
       stat: "rangeFactorPer9Inn",
       displayName: "Range Factor per 9 Innings",
     },
-    rbi : {
+    rbi: {
       stat: "rbi",
       displayName: "Runs Batted In (RBI)",
     },
@@ -297,7 +297,7 @@ const StatsTable = (props) => {
       stat: "runsScoredPer9",
       displayName: "Runs Scored per 9 Innings",
     },
-    sacBunts : {
+    sacBunts: {
       stat: "sacBunts",
       displayName: "Sacrifice Bunts",
     },
@@ -305,7 +305,7 @@ const StatsTable = (props) => {
       stat: "sacrificeBunts",
       displayName: "Sacrifice Bunts",
     },
-    sacFlies : {
+    sacFlies: {
       stat: "sacFlies",
       displayName: "Sacrifice Flies",
     },
@@ -325,7 +325,7 @@ const StatsTable = (props) => {
       stat: "shutouts",
       displayName: "Shutouts",
     },
-    slg : {
+    slg: {
       stat: "slg",
       displayName: "Slugging Percentage (SLG)",
     },
@@ -345,7 +345,7 @@ const StatsTable = (props) => {
       stat: "strikes",
       displayName: "Strikes",
     },
-    strikeOuts : {
+    strikeOuts: {
       stat: "strikeOuts",
       displayName: "Strike Outs",
     },
@@ -436,7 +436,11 @@ const StatsTable = (props) => {
       return;
     }
     if (statArray.length === 1) {
-      statObjects.push({ position: category, stats: statArray[0].stat });
+      if (category === "Fielding") {
+        statObjects.push({ position: statArray[0].position.abbreviation, stats: statArray[0].stat });
+      } else {
+        statObjects.push({ position: category, stats: statArray[0].stat });
+      }
     } else {
       for (let i = 0; i < statArray.length; i++) {
         statObjects.push({
@@ -447,8 +451,43 @@ const StatsTable = (props) => {
     }
   };
 
+
+  const YearByYearFunction = () => {
+    if (props.stats === undefined) {
+      return;
+    }
+    for (let i = 0; i < props.stats.length; i++) {
+      if (props.stats[i].group.displayName === props.type) {
+        statArray = props.stats[i].splits;
+      }
+    }
+    if (statArray.length === 0) {
+      return;
+    }
+    if (statArray.length === 1) {
+      if (category === "Fielding") {
+        statObjects.push({ year: statArray[0].season, position: statArray[0].position.abbreviation, stats: statArray[0].stat });
+      } else {
+        statObjects.push({ year: statArray[0].season, position: category, stats: statArray[0].stat });
+      }
+    } else {
+      for (let i = 0; i < statArray.length; i++) {
+        if (category === "Fielding") {
+          statObjects.push({ year: statArray[i].season, position: statArray[i].position.abbreviation, stats: statArray[i].stat });
+        } else {
+          statObjects.push({ year: statArray[i].season, position: category, stats: statArray[i].stat });
+        }
+      }
+    }
+
+    return 1;
+  };
+
+
   if (props.grouping === "career") {
     careerFunction();
+  } else {
+    YearByYearFunction();
   }
 
   console.log(statObjects);
@@ -465,10 +504,9 @@ const StatsTable = (props) => {
             <table>
               <thead>
                 <tr>
-                  <th>
-                    {groupingType.charAt(0).toUpperCase() +
-                      groupingType.slice(1)}
-                  </th>
+                  {(groupingType === "YearByYear" || groupingType === "season") &&
+                    <th>Year</th>}
+                  <th>Position</th>
                   {Object.keys(statObjects[0].stats).map((key) => {
                     let category = "";
                     if (key in nameLibrary) {
@@ -488,6 +526,8 @@ const StatsTable = (props) => {
                 {statObjects.map((statObject) => {
                   return (
                     <tr key={statObject.position}>
+                      {(groupingType === "YearByYear" || groupingType === "season") &&
+                        <td>{statObject.year}</td>}
                       <td>{statObject.position}</td>
                       {Object.keys(statObject.stats).map((key) => {
                         let stat = statObject.stats[key];

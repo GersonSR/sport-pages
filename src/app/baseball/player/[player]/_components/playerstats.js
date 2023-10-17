@@ -1,6 +1,6 @@
 import styles from "./playerstats.module.css";
 import StatsTable from "./statstable";
-const PlayerStats = ({ player }) => {
+const PlayerStats = ({ player, grouping }) => {
   const playerStatsObjects = player.people[0].stats;
   const playerPosition = player.people[0].primaryPosition.abbreviation;
 
@@ -9,17 +9,17 @@ const PlayerStats = ({ player }) => {
     content = 
       <div className={styles["player-stats-container"]}>
         <h3 className={styles["category"]}> Career Stats </h3>
-        <StatsTable stats={playerStatsObjects} type="pitching" grouping="career"/>
-        <StatsTable stats={playerStatsObjects} type="fielding" grouping="career"/>
-        <StatsTable stats={playerStatsObjects} type="hitting" grouping="career"/>
+        <StatsTable stats={playerStatsObjects} type="pitching" grouping="YearByYear"/>
+        <StatsTable stats={playerStatsObjects} type="fielding" grouping="YearByYear"/>
+        <StatsTable stats={playerStatsObjects} type="hitting" grouping="YearByYear"/>
       </div>
   } else {
     content = 
       <div className={styles["player-stats-container"]}>
         <h3 className={styles["category"]}> Career Stats </h3>
-        <StatsTable stats={playerStatsObjects} type="hitting" grouping="career"/>
-        <StatsTable stats={playerStatsObjects} type="fielding" grouping="career"/>
-        <StatsTable stats={playerStatsObjects} type="pitching" grouping="career"/>
+        <StatsTable stats={playerStatsObjects} type="hitting" grouping="YearByYear"/>
+        <StatsTable stats={playerStatsObjects} type="fielding" grouping="YearByYear"/>
+        <StatsTable stats={playerStatsObjects} type="pitching" grouping="YearByYear"/>
       </div>  }
 
   return (

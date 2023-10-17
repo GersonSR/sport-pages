@@ -12,13 +12,23 @@ const BBPlayerPage = ({ params }) => {
   const [playerInfo, setPlayerInfo] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [statsType, setStatsType] = useState("YearByYear");
 
   const playerID = params.player;
 
   const fetchPlayerInfo = useCallback(async () => {
     setLoading(true);
     try {
-      const response = await fetch(`/api/mlb/player/info/${playerID}`);
+      let response;
+      if (statsType === "career") {
+        response = await fetch(`/api/mlb/player/info/${playerID}`);
+      } else if (statsType === "YearByYear") {
+        response = await fetch (`/api/mlb/player/info/yby/${playerID}/`);
+      } else if (statsType === "season") {
+        response = await fetch (`/api/mlb/player/info/${playerID}/season/2023/`);
+      } else {
+        response = await fetch(`/api/mlb/player/info/${playerID}`);
+      }
       if (!response.ok) {
         throw new Error("Player stats could not get retrieved!");
       }
@@ -38,7 +48,7 @@ const BBPlayerPage = ({ params }) => {
       console.log(error.message);
     }
     setLoading(false);
-  }, [playerID]);
+  }, [playerID, statsType]);
 
   useEffect(() => {
     fetchPlayerInfo();
@@ -50,7 +60,7 @@ const BBPlayerPage = ({ params }) => {
       {!loading && !error && playerData && playerInfo &&
         <PlayerContainer>
           <PlayerInfo player={playerInfo}/>
-          <PlayerStats player={playerData}/>
+          <PlayerStats player={playerData} grouping={statsType}/>
         </PlayerContainer>}
     </Fragment>
   );

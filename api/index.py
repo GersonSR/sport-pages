@@ -2,8 +2,11 @@ from flask import Flask
 import statsapi
 from datetime import *; from dateutil.relativedelta import *
 import calendar
+from flask_cors import CORS
 
 app = Flask(__name__)
+
+CORS(app)
 
 @app.route("/api/mlb/schedule/<date>")
 def mlb_schedule_single(date):
@@ -82,6 +85,21 @@ def mlb_player_data(player_id) :
     player_data = statsapi.get("person", {"personId": player_id, "hydrate": "stats(group=[hitting,pitching,fielding],type=[career], sportId=1)"})
     return player_data
 
+@app.route("/api/mlb/player/info/yby/<player_id>/")
+def mlb_player_data_yby(player_id) :
+    player_data = statsapi.get("person", {"personId": player_id, "hydrate": "stats(group=[hitting,pitching,fielding],type=[YearByYear], sportId=1)"})
+    return player_data
+
+@app.route("/api/mlb/player/info/<player_id>/type/<type>/")
+def mlb_player_data_type(player_id, type) :
+    player_data = statsapi.get("person", {"personId": player_id, "hydrate": "stats(group=[hitting,pitching,fielding],type={}, sportId=1)".format(type)})
+    return player_data
+
+@app.route("/api/mlb/player/info/<player_id>/season/<season>/")
+def mlb_player_season_stats(player_id, season):
+    player_data = statsapi.get("person", {"personId": player_id, "hydrate": "stats(group=[hitting,pitching,fielding],type=[season],season="+season+",sportId=1)"})
+    return player_data
+
 @app.route("/api/mlb/playersearch/<name>")
 def mlb_player_search(name) :
     name = name.replace("%20", " ") #Assumption here is both first and last name are being searched
@@ -94,8 +112,4 @@ def mlb_team_coaches(team_id, date):
     roster = statsapi.get('team_coaches', {'teamId': team_id, 'date': date})
     return roster
 
-@app.route("/api/mlb/player/<player_id>/stats/<season>")
-def mlb_player_season_stats(player_id, season):
-    player_data = statsapi.get("person", {"personId": player_id, "hydrate": "stats(group=[hitting,pitching,fielding],type=[season],season="+season+",sportId=1)"})
-    return player_data
 
