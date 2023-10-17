@@ -3,13 +3,17 @@
   white-space: nowrap;
 }
 
-
 .stats-table table {
   border-spacing: .5rem;
   width: 100%;
+  empty-cells: show;
 }
 
 .category {
   font-weight: bold;
   text-align: center;
+}
+
+.row-seperator {
+  background-color: black;
 }

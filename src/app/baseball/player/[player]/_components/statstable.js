@@ -441,12 +441,13 @@ const StatsTable = (props) => {
       } else {
         statObjects.push({ position: category, stats: statArray[0].stat });
       }
-    } else {
+    } else if (statArray.length > 1) {
       for (let i = 0; i < statArray.length; i++) {
-        statObjects.push({
-          position: statArray[i].position.abbreviation,
-          stats: statArray[i].stat,
-        });
+        if (category === "Fielding") {
+          statObjects.push({position: statArray[i].position.abbreviation, stats: statArray[i].stat });
+        } else {
+          statObjects.push({position: category, stats: statArray[i].stat });
+        }
       }
     }
   };
@@ -470,7 +471,7 @@ const StatsTable = (props) => {
       } else {
         statObjects.push({ year: statArray[0].season, position: category, stats: statArray[0].stat });
       }
-    } else {
+    } else if (statArray.length > 1) {
       for (let i = 0; i < statArray.length; i++) {
         if (category === "Fielding") {
           statObjects.push({ year: statArray[i].season, position: statArray[i].position.abbreviation, stats: statArray[i].stat });
@@ -525,7 +526,7 @@ const StatsTable = (props) => {
               <tbody>
                 {statObjects.map((statObject) => {
                   return (
-                    <tr key={statObject.position}>
+                    <tr key={statObject.position + statObject.year}>
                       {(groupingType === "YearByYear" || groupingType === "season") &&
                         <td>{statObject.year}</td>}
                       {(category === "Fielding") && <td>{statObject.position}</td>}
@@ -534,7 +535,7 @@ const StatsTable = (props) => {
                         if (typeof stat === "object") {
                           return;
                         }
-                        return <td key={key + statObject.position}>{stat}</td>;
+                        return <td key={key + key + statObject.position + statObject.year}>{stat}</td>;
                       })}
                     </tr>
                   );

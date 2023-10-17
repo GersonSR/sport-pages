@@ -11,6 +11,7 @@ const BBPlayerPage = ({ params }) => {
   const [playerData, setPlayerData] = useState(null);
   const [playerInfo, setPlayerInfo] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [statsLoading, setStatsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [statsType, setStatsType] = useState("career");
 
@@ -19,23 +20,6 @@ const BBPlayerPage = ({ params }) => {
   const fetchPlayerInfo = useCallback(async () => {
     setLoading(true);
     try {
-      let response;
-      if (statsType === "career") {
-        response = await fetch(`/api/mlb/player/info/${playerID}`);
-      } else if (statsType === "YearByYear") {
-        response = await fetch (`/api/mlb/player/info/yby/${playerID}/`);
-      } else if (statsType === "season") {
-        response = await fetch (`/api/mlb/player/info/${playerID}/season/2023/`);
-      } else {
-        response = await fetch(`/api/mlb/player/info/${playerID}`);
-      }
-      if (!response.ok) {
-        throw new Error("Player stats could not get retrieved!");
-      }
-      else {
-        const data = await response.json();
-        setPlayerData(data);
-      }
       const response2 = await fetch(`/api/mlb/person/${playerID}`);
       if (!response2.ok) {
         throw new Error("Player info could not get retrieved!");
@@ -54,19 +38,59 @@ const BBPlayerPage = ({ params }) => {
     fetchPlayerInfo();
   }, []);
 
+  const fetchPlayerStats = useCallback(async () => {
+    setStatsLoading(true);
+    try {
+      let response;
+      if (statsType === "career") {
+        response = await fetch(`/api/mlb/player/info/${playerID}`);
+      } else if (statsType === "YearByYear") {
+        response = await fetch (`/api/mlb/player/info/yby/${playerID}/`);
+      } else if (statsType === "season") {
+        response = await fetch (`/api/mlb/player/info/${playerID}/season/2023/`);
+      } else {
+        response = await fetch(`/api/mlb/player/info/${playerID}`);
+      }
+      if (!response.ok) {
+        throw new Error("Player stats could not get retrieved!");
+      }
+      else {
+        const data = await response.json();
+        // console.log(data);
+        setPlayerData(data);
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+    setStatsLoading(false);
+  }, [playerID, statsType]);
+  
+  useEffect(() => {
+    fetchPlayerStats();
+  }, [statsType]);
+
+  const statGroupingSelectionHandler = (event) => {
+    event.preventDefault();
+    console.log(event.target.value);
+    if (event.target.value === "career" || event.target.value === "YearByYear") {
+      setStatsType(event.target.value);
+    } 
+  }
+
   return (
     <Fragment>
       {loading && !error && <div>It's loading!</div>}
-      {!loading && !error && playerData && playerInfo &&
+      {!loading && !error && playerInfo &&
         <PlayerContainer>
           <PlayerInfo player={playerInfo}/>
           <form className={styles["form"]}>
-            <select>
-              <option>Career</option>
-              <option>Year By Year</option>
+            <select value={statsType} onChange={statGroupingSelectionHandler}>
+              <option value="career">Career</option>
+              <option value="YearByYear">Year By Year</option>
             </select>
           </form>
-          <PlayerStats player={playerData} grouping={statsType}/>
+          {!statsLoading && <PlayerStats player={playerData} grouping={statsType}/>}
+          {statsLoading && <div>It's loading!</div>}
         </PlayerContainer>}
     </Fragment>
   );

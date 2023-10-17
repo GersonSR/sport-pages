@@ -24,7 +24,7 @@ const PlayerInfo = ({ player }) => {
     hometown = "N/A";
   } else {
     hometown = hometown.trim();
-    console.log(hometown);
+    // console.log(hometown);
     hometown = hometown.replace(/\s{2,}/g, ", ");
   }
 
