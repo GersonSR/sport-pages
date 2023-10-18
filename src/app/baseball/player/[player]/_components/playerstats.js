@@ -8,7 +8,7 @@ const PlayerStats = ({ player, grouping }) => {
   if (playerPosition === "P") {
     content = 
       <div className={styles["player-stats-container"]}>
-        <h3 className={styles["category"]}> Career Stats </h3>
+        <h3 className={styles["category"]}></h3>
         <StatsTable stats={playerStatsObjects} type="pitching" grouping={grouping}/>
         <StatsTable stats={playerStatsObjects} type="fielding" grouping={grouping}/>
         <StatsTable stats={playerStatsObjects} type="hitting" grouping={grouping}/>
@@ -16,7 +16,7 @@ const PlayerStats = ({ player, grouping }) => {
   } else {
     content = 
       <div className={styles["player-stats-container"]}>
-        <h3 className={styles["category"]}> Career Stats </h3>
+        <h3 className={styles["category"]}></h3>
         <StatsTable stats={playerStatsObjects} type="hitting" grouping={grouping}/>
         <StatsTable stats={playerStatsObjects} type="fielding" grouping={grouping}/>
         <StatsTable stats={playerStatsObjects} type="pitching" grouping={grouping}/>

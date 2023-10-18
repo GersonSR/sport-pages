@@ -437,21 +437,26 @@ const StatsTable = (props) => {
     }
     if (statArray.length === 1) {
       if (category === "Fielding") {
-        statObjects.push({ position: statArray[0].position.abbreviation, stats: statArray[0].stat });
+        statObjects.push({
+          position: statArray[0].position.abbreviation,
+          stats: statArray[0].stat,
+        });
       } else {
         statObjects.push({ position: category, stats: statArray[0].stat });
       }
     } else if (statArray.length > 1) {
       for (let i = 0; i < statArray.length; i++) {
         if (category === "Fielding") {
-          statObjects.push({position: statArray[i].position.abbreviation, stats: statArray[i].stat });
+          statObjects.push({
+            position: statArray[i].position.abbreviation,
+            stats: statArray[i].stat,
+          });
         } else {
-          statObjects.push({position: category, stats: statArray[i].stat });
+          statObjects.push({ position: category, stats: statArray[i].stat });
         }
       }
     }
   };
-
 
   const YearByYearFunction = () => {
     if (props.stats === undefined) {
@@ -466,24 +471,55 @@ const StatsTable = (props) => {
       return;
     }
     if (statArray.length === 1) {
-      if (category === "Fielding") {
-        statObjects.push({ year: statArray[0].season, position: statArray[0].position.abbreviation, stats: statArray[0].stat });
+      let teamName = "";
+      if ("team" in statArray[0]) {
+        teamName = statArray[0].team.name;
       } else {
-        statObjects.push({ year: statArray[0].season, position: category, stats: statArray[0].stat });
+        teamName = "N/A";
+      }
+      if (category === "Fielding") {
+        statObjects.push({
+          year: statArray[0].season,
+          position: statArray[0].position.abbreviation,
+          team: teamName,
+          stats: statArray[0].stat,
+        });
+      } else {
+        statObjects.push({
+          year: statArray[0].season,
+          position: category,
+          team: teamName,
+          stats: statArray[0].stat,
+        });
       }
     } else if (statArray.length > 1) {
       for (let i = 0; i < statArray.length; i++) {
-        if (category === "Fielding") {
-          statObjects.push({ year: statArray[i].season, position: statArray[i].position.abbreviation, stats: statArray[i].stat });
+        let teamName = "";
+        if ("team" in statArray[i]) {
+          teamName = statArray[i].team.name;
         } else {
-          statObjects.push({ year: statArray[i].season, position: category, stats: statArray[i].stat });
+          teamName = <em>Totals for {statArray[i].season}</em>
+        }
+        if (category === "Fielding") {
+          statObjects.push({
+            year: statArray[i].season,
+            position: statArray[i].position.abbreviation,
+            team: teamName,
+            stats: statArray[i].stat,
+          });
+        } else {
+          statObjects.push({
+            year: statArray[i].season,
+            position: category,
+            team: teamName,
+            stats: statArray[i].stat,
+          });
         }
       }
     }
 
     return 1;
   };
-
 
   if (props.grouping === "career") {
     careerFunction();
@@ -505,9 +541,11 @@ const StatsTable = (props) => {
             <table>
               <thead>
                 <tr>
-                  {(groupingType === "YearByYear" || groupingType === "season") &&
-                    <th>Year</th>}
-                  {(category === "Fielding") && <th>Position</th>}
+                  {(groupingType === "YearByYear" ||
+                    groupingType === "season") && <th>Year</th>}
+                  {category === "Fielding" && <th>Position</th>}
+                  {(groupingType === "YearByYear" ||
+                    groupingType === "season") && <th>Team</th>}
                   {Object.keys(statObjects[0].stats).map((key) => {
                     let category = "";
                     if (key in nameLibrary) {
@@ -526,16 +564,36 @@ const StatsTable = (props) => {
               <tbody>
                 {statObjects.map((statObject) => {
                   return (
-                    <tr key={statObject.position + statObject.year + Math.random()}>
-                      {(groupingType === "YearByYear" || groupingType === "season") &&
-                        <td>{statObject.year}</td>}
-                      {(category === "Fielding") && <td>{statObject.position}</td>}
+                    <tr
+                      key={
+                        statObject.position + statObject.year + Math.random()
+                      }
+                    >
+                      {(groupingType === "YearByYear" ||
+                        groupingType === "season") && (
+                        <td>{statObject.year}</td>
+                      )}
+                      {category === "Fielding" && (
+                        <td>{statObject.position}</td>
+                      )}
+                      {(groupingType === "YearByYear" ||
+                        groupingType === "season") && (
+                        <td>{statObject.team}</td>
+                      )}
                       {Object.keys(statObject.stats).map((key) => {
                         let stat = statObject.stats[key];
                         if (typeof stat === "object") {
                           return;
                         }
-                        return <td key={key + key + statObject.position + statObject.year}>{stat}</td>;
+                        return (
+                          <td
+                            key={
+                              key + key + statObject.position + statObject.year
+                            }
+                          >
+                            {stat}
+                          </td>
+                        );
                       })}
                     </tr>
                   );
