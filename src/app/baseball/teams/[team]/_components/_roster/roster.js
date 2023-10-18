@@ -7,6 +7,7 @@ const Roster = (props) => {
   let pitchers = [];
   let catchers = [];
   let hitters = [];
+  let twoWayPlayers = [];
 
   // const roster = [
   //   {
@@ -49,6 +50,9 @@ const Roster = (props) => {
       case "Hitter":
         hitters.push(player);
         break;
+      case "Two-Way Player":
+        twoWayPlayers.push(player);
+        break;
       default:
         break;
     }
@@ -62,6 +66,7 @@ const Roster = (props) => {
       <PositionCard position="Outfielders" players={outfielders} />
       <PositionCard position="Catchers" players={catchers} />
       <PositionCard position="Hitters" players={hitters} />
+      <PositionCard position="Two-Way-Players" players={twoWayPlayers} />
     </div>
   );
 };
