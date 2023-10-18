@@ -1,3 +1,7 @@
 .form {
     margin-top: 1rem;
 }
+
+.year-selection {
+    visibility: hidden;
+}

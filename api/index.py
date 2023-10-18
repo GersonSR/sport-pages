@@ -100,6 +100,17 @@ def mlb_player_season_stats(player_id, season):
     player_data = statsapi.get("person", {"personId": player_id, "hydrate": "stats(group=[hitting,pitching,fielding],type=[season],season="+season+",sportId=1)"})
     return player_data
 
+@app.route("/api/mlb/player/info/<player_id>/season/")
+def mlb_player_seasons_played(player_id):
+    player_data = statsapi.get("person", {"personId": player_id, "hydrate": "stats(group=[hitting,pitching,fielding],type=[YearByYear],sportId=1)"})
+    years = []
+    for year in player_data["people"][0]["stats"]:
+        for statYear in year["splits"]:
+            season = statYear["season"]
+            if season not in years:
+                years.append(season)
+    return years
+
 @app.route("/api/mlb/playersearch/<name>")
 def mlb_player_search(name) :
     name = name.replace("%20", " ") #Assumption here is both first and last name are being searched

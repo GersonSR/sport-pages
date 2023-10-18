@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useState, useEffect, useCallback } from "react";
+import { Fragment, useState, useEffect, useCallback, useRef } from "react";
 import styles from "./page.module.css";
 
 import PlayerContainer from "./_components/playercontainer";
@@ -14,12 +14,28 @@ const BBPlayerPage = ({ params }) => {
   const [statsLoading, setStatsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [statsType, setStatsType] = useState("career");
+  const selectedSeasonRef = useRef(null);
+  const [selectedSeason, setSelectedSeason] = useState(null);
+  const [playerSeasons, setPlayerSeasons] = useState(null);
 
   const playerID = params.player;
 
   const fetchPlayerInfo = useCallback(async () => {
     setLoading(true);
     try {
+      const response = await fetch(`/api/mlb/player/info/${playerID}/season/`);
+      if (!response.ok) {
+        throw new Error("Player info could not get retrieved!");
+      } else {
+        const data = await response.json();
+        const seasons = data;
+        // console.log(seasons);
+        const seasonOptions = seasons.map((season) => {
+          return <option key ={season} value={season}>{season}</option>
+        });
+        setPlayerSeasons(seasonOptions);
+        setSelectedSeason(seasons[0]);        
+      }
       const response2 = await fetch(`/api/mlb/person/${playerID}`);
       if (!response2.ok) {
         throw new Error("Player info could not get retrieved!");
@@ -41,13 +57,14 @@ const BBPlayerPage = ({ params }) => {
   const fetchPlayerStats = useCallback(async () => {
     setStatsLoading(true);
     try {
+      // console.log(selectedSeason)
       let response;
       if (statsType === "career") {
         response = await fetch(`/api/mlb/player/info/${playerID}`);
       } else if (statsType === "YearByYear") {
         response = await fetch (`/api/mlb/player/info/yby/${playerID}/`);
       } else if (statsType === "season") {
-        response = await fetch (`/api/mlb/player/info/${playerID}/season/2023/`);
+        response = await fetch (`/api/mlb/player/info/${playerID}/season/${selectedSeason}/`);
       } else {
         response = await fetch(`/api/mlb/player/info/${playerID}`);
       }
@@ -63,18 +80,30 @@ const BBPlayerPage = ({ params }) => {
       console.log(error.message);
     }
     setStatsLoading(false);
-  }, [playerID, statsType]);
+  }, [playerID, statsType, selectedSeason]);
   
   useEffect(() => {
     fetchPlayerStats();
-  }, [statsType]);
-
+  }, [statsType, selectedSeason]);
+  
   const statGroupingSelectionHandler = (event) => {
     event.preventDefault();
-    console.log(event.target.value);
+    // console.log(event.target.value);
     if (event.target.value === "career" || event.target.value === "YearByYear") {
+      console.log(selectedSeasonRef.current);
+      selectedSeasonRef.current.style.visibility = "hidden";
       setStatsType(event.target.value);
-    } 
+    } else if (event.target.value === "season") {
+      console.log(selectedSeasonRef.current);
+      selectedSeasonRef.current.style.visibility = "visible";
+      setStatsType(event.target.value);
+    }
+  }
+
+  const seasonSelectionHandler = (event) => {
+    event.preventDefault();
+    // console.log(event.target.value);
+    setSelectedSeason(event.target.value);
   }
 
   return (
@@ -87,6 +116,10 @@ const BBPlayerPage = ({ params }) => {
             <select value={statsType} onChange={statGroupingSelectionHandler}>
               <option value="career">Career</option>
               <option value="YearByYear">Year By Year</option>
+              <option value="season">Season</option>
+            </select>
+            <select ref={selectedSeasonRef} className={styles["year-selection"]} value={selectedSeason} onChange={seasonSelectionHandler}>
+              {playerSeasons}
             </select>
           </form>
           {!statsLoading && <PlayerStats player={playerData} grouping={statsType}/>}

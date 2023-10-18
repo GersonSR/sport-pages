@@ -491,7 +491,7 @@ const StatsTable = (props) => {
     YearByYearFunction();
   }
 
-  console.log(statObjects);
+  // console.log(statObjects);
   let statCount = statObjects.length;
   return (
     <Fragment>
