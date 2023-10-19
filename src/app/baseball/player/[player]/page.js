@@ -23,7 +23,7 @@ const BBPlayerPage = ({ params }) => {
   const fetchPlayerInfo = useCallback(async () => {
     setLoading(true);
     try {
-      const response = await fetch(`/api/mlb/player/info/experience/${playerID}`);
+      const response = await fetch(`/api/mlb/player/info/experience/${playerID}/`);
       if (!response.ok) {
         throw new Error("Player info could not get retrieved!");
       } else {
