@@ -90,7 +90,7 @@ const BBPlayerPage = ({ params }) => {
     event.preventDefault();
     // console.log(event.target.value);
     if (event.target.value === "career" || event.target.value === "YearByYear") {
-      console.log(selectedSeasonRef.current);
+      // console.log(selectedSeasonRef.current);
       selectedSeasonRef.current.style.visibility = "hidden";
       setStatsType(event.target.value);
     } else if (event.target.value === "season") {
