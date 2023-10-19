@@ -100,7 +100,7 @@ def mlb_player_season_stats(player_id, season):
     player_data = statsapi.get("person", {"personId": player_id, "hydrate": "stats(group=[hitting,pitching,fielding],type=[season],season="+season+",sportId=1)"})
     return player_data
 
-@app.route("/api/mlb/player/info/experience/<player_id>/")
+@app.route("/api/mlb/player/info/experience/<player_id>/", strict_slashes=False)
 def mlb_player_seasons_played(player_id):
     player_data = statsapi.get("person", {"personId": player_id, "hydrate": "stats(group=[hitting,pitching,fielding],type=[YearByYear],sportId=1)"})
     years = []
