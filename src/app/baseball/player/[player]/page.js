@@ -48,7 +48,7 @@ const BBPlayerPage = ({ params }) => {
       console.log(error.message);
     }
     setLoading(false);
-  }, [playerID, statsType]);
+  }, [playerID]);
 
   useEffect(() => {
     fetchPlayerInfo();
@@ -108,7 +108,7 @@ const BBPlayerPage = ({ params }) => {
 
   return (
     <Fragment>
-      {loading && !error && <div>It's loading!</div>}
+      {loading && !error && <div>It`&39;s loading!</div>}
       {!loading && !error && playerInfo &&
         <PlayerContainer>
           <PlayerInfo player={playerInfo}/>
@@ -123,7 +123,7 @@ const BBPlayerPage = ({ params }) => {
             </select>
           </form>
           {!statsLoading && <PlayerStats player={playerData} grouping={statsType}/>}
-          {statsLoading && <div>It's loading!</div>}
+          {statsLoading && <div>It`&39;s loading!</div>}
         </PlayerContainer>}
     </Fragment>
   );
