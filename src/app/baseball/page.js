@@ -24,6 +24,9 @@ const SportPage = () => {
               alt="MLB Logo"
               width={128}
               height={72}
+              sizes="100vw"
+              // Make the image display full width
+              className={styles["league-logo"]}
             ></Image>
             <span>MLB</span>
             </Link>
