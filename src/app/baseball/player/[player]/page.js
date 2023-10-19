@@ -23,7 +23,7 @@ const BBPlayerPage = ({ params }) => {
   const fetchPlayerInfo = useCallback(async () => {
     setLoading(true);
     try {
-      const response = await fetch(`/api/mlb/player/info/${playerID}/season/`);
+      const response = await fetch(`/api/mlb/player/info/${playerID}/experience/`);
       if (!response.ok) {
         throw new Error("Player info could not get retrieved!");
       } else {
@@ -108,7 +108,7 @@ const BBPlayerPage = ({ params }) => {
 
   return (
     <Fragment>
-      {loading && !error && <div>It`&39;s loading!</div>}
+      {loading && !error && <div>It&#39;s loading!</div>}
       {!loading && !error && playerInfo &&
         <PlayerContainer>
           <PlayerInfo player={playerInfo}/>
@@ -123,7 +123,7 @@ const BBPlayerPage = ({ params }) => {
             </select>
           </form>
           {!statsLoading && <PlayerStats player={playerData} grouping={statsType}/>}
-          {statsLoading && <div>It`&39;s loading!</div>}
+          {statsLoading && <div>It&#39;s loading!</div>}
         </PlayerContainer>}
     </Fragment>
   );
