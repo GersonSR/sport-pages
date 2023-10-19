@@ -85,22 +85,22 @@ def mlb_player_data(player_id) :
     player_data = statsapi.get("person", {"personId": player_id, "hydrate": "stats(group=[hitting,pitching,fielding],type=[career], sportId=1)"})
     return player_data
 
-@app.route("/api/mlb/player/info/yby/<player_id>/")
+@app.route("/api/mlb/player/info/yby/<player_id>")
 def mlb_player_data_yby(player_id) :
     player_data = statsapi.get("person", {"personId": player_id, "hydrate": "stats(group=[hitting,pitching,fielding],type=[YearByYear], sportId=1)"})
     return player_data
 
-@app.route("/api/mlb/player/info/<player_id>/type/<type>/")
+@app.route("/api/mlb/player/info/<player_id>/type/<type>")
 def mlb_player_data_type(player_id, type) :
     player_data = statsapi.get("person", {"personId": player_id, "hydrate": "stats(group=[hitting,pitching,fielding],type={}, sportId=1)".format(type)})
     return player_data
 
-@app.route("/api/mlb/player/info/<player_id>/season/<season>/")
+@app.route("/api/mlb/player/info/<player_id>/season/<season>")
 def mlb_player_season_stats(player_id, season):
     player_data = statsapi.get("person", {"personId": player_id, "hydrate": "stats(group=[hitting,pitching,fielding],type=[season],season="+season+",sportId=1)"})
     return player_data
 
-@app.route("/api/mlb/player/info/experience/<player_id>/", strict_slashes=False)
+@app.route("/api/mlb/player/info/experience/<player_id>", strict_slashes=False)
 def mlb_player_seasons_played(player_id):
     player_data = statsapi.get("person", {"personId": player_id, "hydrate": "stats(group=[hitting,pitching,fielding],type=[YearByYear],sportId=1)"})
     years = []
