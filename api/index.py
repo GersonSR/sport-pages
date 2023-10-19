@@ -6,7 +6,7 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 
-CORS(app, origins=["http://localhost:3000", "https://sport-pages-94qff9x2z-gersons-projects-7cfadf72.vercel.app/"])
+CORS(app, origins=["http://localhost:3000", "https://sport-pages.vercel.app/"])
 
 @app.route("/api/mlb/schedule/<date>")
 def mlb_schedule_single(date):
