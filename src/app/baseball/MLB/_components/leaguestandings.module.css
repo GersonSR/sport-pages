@@ -14,3 +14,10 @@
   padding: 1rem;
   border: 1px solid black;
 }
+
+
+@media screen and (max-width: 600px) {
+  .league {
+    padding: 1rem 0 1rem 0;
+  }
+}

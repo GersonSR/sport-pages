@@ -1,10 +1,12 @@
 .division {
   padding: 1rem;
+  width: 100%;
 }
 
 .teams-table {
   border-collapse: collapse;
   font-size: large;
+  width: 100%;
 }
 
 .teams-table-head {
@@ -50,4 +52,10 @@
 
 .games-back {
   padding: 0 .5rem;
+}
+
+@media screen and (max-width: 600px) {
+  .division {
+    padding: 1rem 0 1rem 0;
+  }
 }
