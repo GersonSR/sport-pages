@@ -3,6 +3,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   overflow: auto;
+  justify-content: center;
 }
 
 .coach-card {

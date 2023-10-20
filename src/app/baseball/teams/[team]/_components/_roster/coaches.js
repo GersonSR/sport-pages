@@ -42,7 +42,7 @@ const Coaches = ({ coaches }) => {
     });
   }
 
-  console.log(coachesArray);
+  // console.log(coachesArray);
   return (
     <div className={styles["coaches-container"]}>
       <PositionCard

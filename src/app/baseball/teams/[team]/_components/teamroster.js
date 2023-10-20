@@ -15,8 +15,10 @@ const TeamRoster = ({ team, type }) => {
   let todayMax = new Date().toLocaleDateString("en-CA");
 
   const getRoster = async () => {
+    setIsLoaded(false);
     try {
       let apiDate = date.toLocaleDateString("en-US").replaceAll("/", "-");
+      // console.log(type);
       let response;
       if (type === "players") {
         response = await fetch(`/api/mlb/team/${team.id}/roster/${apiDate}`);
@@ -39,6 +41,7 @@ const TeamRoster = ({ team, type }) => {
 
   const handleDateChange = (event) => {
     let dateType = new Date(event.target.value);
+    formattedDate = dateType.toLocaleDateString("en-CA");
     setDate(dateType);
   }
 
@@ -47,9 +50,9 @@ const TeamRoster = ({ team, type }) => {
     getRoster();
   }
 
-  useEffect(() => {
-    formattedDate = date.toLocaleDateString("en-CA")  ;
-  }, [date]);
+  // useEffect(() => {
+  //   formattedDate = date.toLocaleDateString("en-CA")  ;
+  // }, [date]);
 
   useEffect(() => {
     getRoster(); 
@@ -62,7 +65,7 @@ const TeamRoster = ({ team, type }) => {
         {((type === "players") ? <h2>Team Roster</h2> : <h2>Team Personnel</h2>)}
         <form className={styles["roster-filter"]} onSubmit={rosterUpdateHandler}>
           <label htmlFor="roster-date">
-            Date: <input type="date" id="roster-date" name="roster-date" max={todayMax} value={formattedDate} onChange={handleDateChange}/>
+            Date: <input type="date" name="roster-date" max={todayMax} value={formattedDate} onChange={handleDateChange}/>
           </label>
           <button>Search</button>
         </form>
