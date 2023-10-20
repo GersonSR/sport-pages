@@ -10,3 +10,10 @@
 .scoretable span {
   padding: 1rem;
 }
+
+@media screen and (max-width: 768px) {
+  .scoretable {
+    flex-direction: column;
+    width: 100%;
+  }
+}
