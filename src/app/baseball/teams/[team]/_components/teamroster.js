@@ -64,7 +64,7 @@ const TeamRoster = ({ team, type }) => {
         {((type === "players") ? <h2>Team Roster</h2> : <h2>Team Personnel</h2>)}
         <form className={styles["roster-filter"]} onSubmit={rosterUpdateHandler}>
           <label htmlFor="roster-date">
-            Date: <ReactDatePicker selected={date} onChange={handleDateChange}/>
+            Date: <ReactDatePicker selected={date} onChange={handleDateChange} maxDate={new Date()} className={styles["calendar"]}/>
           </label>
           <button>Search</button>
         </form>

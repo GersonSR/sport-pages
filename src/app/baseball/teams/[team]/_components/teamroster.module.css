@@ -15,4 +15,14 @@
 
 .roster-filter {
   margin: .5rem;
+  display: flex;
+}
+
+.calendar {
+  width: auto;
+  margin-right: 1rem;
+}
+
+.calendar:focus {
+  outline: none;
 }
