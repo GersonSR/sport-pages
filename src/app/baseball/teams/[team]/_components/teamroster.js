@@ -5,20 +5,21 @@ import Roster from "./_roster/roster";
 
 import { useEffect, useState } from "react";
 import Coaches from "./_roster/coaches";
+import ReactDatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const TeamRoster = ({ team, type }) => {
   const [roster, setRoster] = useState([]);
   const [date, setDate] = useState(new Date());
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false); //Change to false once done with roster work
-  let formattedDate = date.toLocaleDateString("en-CA")
   let todayMax = new Date().toLocaleDateString("en-CA");
 
   const getRoster = async () => {
     setIsLoaded(false);
     try {
       let apiDate = date.toLocaleDateString("en-US").replaceAll("/", "-");
-      // console.log(type);
+      console.log(apiDate);
       let response;
       if (type === "players") {
         response = await fetch(`/api/mlb/team/${team.id}/roster/${apiDate}`);
@@ -39,10 +40,8 @@ const TeamRoster = ({ team, type }) => {
     setIsLoaded(true);
   }
 
-  const handleDateChange = (event) => {
-    let dateType = new Date(event.target.value);
-    formattedDate = dateType.toLocaleDateString("en-CA");
-    setDate(dateType);
+  const handleDateChange = (date) => {
+    setDate(date);
   }
 
   const rosterUpdateHandler = (event) => {
@@ -65,7 +64,7 @@ const TeamRoster = ({ team, type }) => {
         {((type === "players") ? <h2>Team Roster</h2> : <h2>Team Personnel</h2>)}
         <form className={styles["roster-filter"]} onSubmit={rosterUpdateHandler}>
           <label htmlFor="roster-date">
-            Date: <input type="date" name="roster-date" max={todayMax} value={formattedDate} onChange={handleDateChange}/>
+            Date: <ReactDatePicker selected={date} onChange={handleDateChange}/>
           </label>
           <button>Search</button>
         </form>
