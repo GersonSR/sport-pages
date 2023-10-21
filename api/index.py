@@ -124,3 +124,44 @@ def mlb_team_coaches(team_id, date):
     return roster
 
 
+#Games API Routes
+
+@app.route("/api/mlb/game/<game_id>")
+def mlb_major_game(game_id):
+    game = statsapi.get("game", {"gamePk": game_id}) 
+    formattedGame = {}
+
+    #Adds general game info
+    formattedGame["gameBoxInfo"] = game["liveData"]["boxscore"]["info"]
+    #Adds umps
+    formattedGame["officials"] = game["liveData"]["boxscore"]["officials"]
+    #Away Team Info
+    formattedGame["away"] = game["liveData"]["boxscore"]["teams"]["away"]
+    #Home Team Info
+    formattedGame["home"] = game["liveData"]["boxscore"]["teams"]["home"]
+
+    #Game pitching decisions
+    formattedGame["decisions"] = game["liveData"]["decisions"]
+
+    #Linescore
+    formattedGame["linescore"] = game["liveData"]["linescore"]
+
+    #Game status
+    formattedGame["status"] = game["gameData"]["status"]
+
+    #Team General Info
+    formattedGame["teams"] = game["gameData"]["teams"]
+
+    #Formatted Game Data from Stats API
+    #For detailed info, view https://github.com/toddrob99/MLB-StatsAPI/blob/master/statsapi/__init__.py
+    #Along with https://github.com/toddrob99/MLB-StatsAPI/wiki/Function:-boxscore
+    gameInfoFormatted = statsapi.boxscore_data(game_id, timecode=None)
+
+    # This adds all other game info to the formattedGame object not included in the above
+    for key in gameInfoFormatted:
+        if (key in ["away", "home", "gameBoxInfo", "gameId", "teamInfo"]):
+            continue
+        else:
+            formattedGame[key] = gameInfoFormatted[key]
+
+    return formattedGame
