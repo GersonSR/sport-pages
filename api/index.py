@@ -141,8 +141,11 @@ def mlb_major_game(game_id):
     formattedGame["home"] = game["liveData"]["boxscore"]["teams"]["home"]
 
     #Game pitching decisions
-    formattedGame["decisions"] = game["liveData"]["decisions"]
-
+    if ("decisions" in game["liveData"]):
+        formattedGame["decisions"] = game["liveData"]["decisions"]
+    else :
+        formattedGame["decisions"] = None
+        
     #Linescore
     formattedGame["linescore"] = game["liveData"]["linescore"]
 
@@ -151,6 +154,9 @@ def mlb_major_game(game_id):
 
     #Team General Info
     formattedGame["teams"] = game["gameData"]["teams"]
+
+    #Game Datetime Info
+    formattedGame["datetime"] = game["gameData"]["datetime"]
 
     #Formatted Game Data from Stats API
     #For detailed info, view https://github.com/toddrob99/MLB-StatsAPI/blob/master/statsapi/__init__.py
