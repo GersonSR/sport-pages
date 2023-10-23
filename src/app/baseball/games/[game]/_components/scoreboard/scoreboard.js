@@ -1,7 +1,16 @@
+
+import ScoreboardHeader from "./scoreheader";
+import GameScore from "./gamescore";
+import LineScore from "./linescore";
+
+import styles from "./scoreboard.module.css";
+
 const Scoreboard = () => {
     return (
-        <div className="scoreboard-container">
-            1 v 2
+        <div className={styles["scoreboard-container"]}>
+            <ScoreboardHeader />
+            <GameScore />
+            <LineScore />
         </div>
     );
 }
