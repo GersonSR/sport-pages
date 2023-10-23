@@ -2,10 +2,15 @@
 import { useContext } from 'react';
 import { GameContext } from './layout';
 
+
+import Scoreboard from './_components/scoreboard/scoreboard';
+
+import styles from './page.module.css';
+
 const GamePage = ({ params }) => {
     const { game, loading, error } = useContext(GameContext);
 
-    if (!loading) {
+    if (loading) {
         return <div>Loading...</div>
     } else if (error) {
         return <div>{error}</div>
@@ -16,10 +21,13 @@ const GamePage = ({ params }) => {
     }
 
     return (
-        <div>
-            <h1>Game Page</h1>
-            <p>Game ID: {params.game}</p>
-        </div>
+        <main className={styles["main-container"]}>
+            <div style={{textAlign: "center"}}>
+                <h1>Game Page</h1>
+                <p>Game ID: {params.game}</p>
+            </div>
+            <Scoreboard />
+        </main>
     );
 }
 
