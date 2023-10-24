@@ -11,10 +11,3 @@
     justify-content: space-between;
     align-items: center;
 }
-
-@media screen and (min-width: 1000px) {
-    .scoreboard-header {
-        margin: 0 6rem 0 6rem;
-    }
-    
-}
