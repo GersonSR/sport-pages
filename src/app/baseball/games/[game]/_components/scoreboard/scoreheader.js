@@ -13,13 +13,24 @@ const ScoreboardHeader = () => {
     const formattedDate = gameTime.toLocaleString(navigator.language, {timeZone: timeZone, year: 'numeric', month: 'long', day: 'numeric'});
     const formattedTime = gameTime.toLocaleTimeString(navigator.language, {timeZone: timeZone, hour: '2-digit', minute: '2-digit'});
 
+    // Venue and Weather Information
+    const weatherDescription = game["gameBoxInfo"]["Weather"];
+    const venue = game["gameBoxInfo"]["Venue"];
+    const formattedWeather = weatherDescription.replace(" degrees", "°F").split(",")[0];
+
+    // Game Status
 
     return (
-        <div className="scoreboard-header">
-            <div>
+        <div className={styles["scoreboard-header"]}>
+            <div className={styles["game-info"]}>
                 <div>{formattedDate}, {formattedTime}<span className={styles["side-note"]}>{timeZone.replace("_", " ")} time zone format.</span></div>
+                <div>{venue}</div>
+                <div>{formattedWeather}</div>
             </div>
-            Date, Time, Location, Weather(?), and status.
+            <div className={styles["game-status"]}>
+                <div></div>
+            </div>
+            Date(done), Time(done), Location(done), Weather(done), and status.
         </div>
     );
 };

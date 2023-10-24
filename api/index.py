@@ -131,8 +131,18 @@ def mlb_major_game(game_id):
     game = statsapi.get("game", {"gamePk": game_id}) 
     formattedGame = {}
 
-    #Adds general game info
-    formattedGame["gameBoxInfo"] = game["liveData"]["boxscore"]["info"]
+    #Adds general game info, originally an array parsed into a single object
+    formattedGame["gameBoxInfo"] = {}
+    for item in game["liveData"]["boxscore"]["info"] :
+        label = item["label"]
+        if "value" in item :
+            value = item["value"]
+        else :
+            value = item["label"]
+
+        
+        formattedGame["gameBoxInfo"][label] = value
+
     #Adds umps
     formattedGame["officials"] = game["liveData"]["boxscore"]["officials"]
     #Away Team Info
