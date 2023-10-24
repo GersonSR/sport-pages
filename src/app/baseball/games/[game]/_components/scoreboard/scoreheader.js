@@ -19,7 +19,23 @@ const ScoreboardHeader = () => {
     const formattedWeather = weatherDescription.replace(" degrees", "°F").split(",")[0];
 
     // Game Status
-
+    let statusContent;
+    let status = game["status"]["abstractGameState"];
+    if (status === "Live") {
+        status = game["status"]["detailedState"];
+        statusContent = (
+            <div>
+                <div>{status}</div>
+                <div>{game["linescore"]["inningState"]} {game["linescore"]["currentInningOrdinal"]}</div>
+            </div>
+        );
+    } else {
+        statusContent = (
+            <div>
+                <div>{status}</div>
+            </div>
+        );
+    }
     return (
         <div className={styles["scoreboard-header"]}>
             <div className={styles["game-info"]}>
@@ -28,9 +44,8 @@ const ScoreboardHeader = () => {
                 <div>{formattedWeather}</div>
             </div>
             <div className={styles["game-status"]}>
-                <div></div>
+                <div>{statusContent}</div>
             </div>
-            Date(done), Time(done), Location(done), Weather(done), and status.
         </div>
     );
 };
