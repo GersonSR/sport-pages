@@ -2,6 +2,7 @@ import { GameContext } from "../../layout";
 import { useContext } from "react";
 
 import styles from "./gamescore.module.css";
+import Link from "next/link";
 
 const GameScore = () => {
     const { game, loading, error } = useContext(GameContext);
@@ -16,14 +17,16 @@ const GameScore = () => {
 
     return (
         <div className={styles["game-score"]}>
-            <div>
-                <div>Away Team</div>
-                <div>{awayScore}</div>
+            <div className={styles["team-info"]}> 
+                <div><Link className={styles["team-link"]} href={`/baseball/teams/${awayTeam["id"]}`}>{awayTeam["name"]}</Link></div>
+                <div className={styles["team-record"]}>({awayTeam["record"]["wins"]} - {awayTeam["record"]["losses"]})</div>
             </div>
-            <div> at </div>
-            <div>
-                <div>Home Team</div>
-                <div>{homeScore}</div>
+            <div className={styles["score"]}>{awayScore}</div>
+            <div className={styles["score-container"]}>at</div>
+            <div className={styles["score"]}>{homeScore}</div>
+            <div className={styles["team-info"]}>
+                <div><Link className={styles["team-link"]} href={`/baseball/teams/${homeTeam["id"]}`}>{homeTeam["name"]}</Link></div>
+                <div className={styles["team-record"]}>({homeTeam["record"]["wins"]} - {homeTeam["record"]["losses"]})</div>
             </div>
         </div>
     );

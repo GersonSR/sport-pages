@@ -4,3 +4,36 @@
     justify-content: space-between;
     align-items: center;
 }
+
+.team-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    /* margin: auto; */
+}
+
+.score-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.team-record {
+    font-size: small;
+    font-weight: bold;
+    color: gray;
+}
+
+.score {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0 1rem;
+}
+
+.team-link {
+    color: black;
+    text-decoration: none;
+    font-size: large;
+}
