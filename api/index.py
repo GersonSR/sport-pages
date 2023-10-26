@@ -126,6 +126,13 @@ def mlb_team_coaches(team_id, date):
 
 #Games API Routes
 
+# Raw Game Data Route
+@app.route("/api/mlb/game/<game_id>/raw")
+def mlb_major_game_raw(game_id):
+    game = statsapi.get("game", {"gamePk": game_id})
+    return game
+
+#Formatted Game Route
 @app.route("/api/mlb/game/<game_id>")
 def mlb_major_game(game_id):
     game = statsapi.get("game", {"gamePk": game_id}) 
