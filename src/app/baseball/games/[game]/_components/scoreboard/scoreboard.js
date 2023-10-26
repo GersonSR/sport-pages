@@ -8,9 +8,9 @@ import styles from "./scoreboard.module.css";
 const Scoreboard = () => {
     return (
         <div className={styles["scoreboard-container"]}>
-            <ScoreboardHeader />
-            <GameScore />
-            <LineScore />
+            <ScoreboardHeader/>
+            <GameScore/>
+            <LineScore/>
         </div>
     );
 }
