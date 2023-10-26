@@ -2,10 +2,72 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+    width: 50%;
+    border: 1px solid black;
+}
+
+.teams-info {
+    display: inherit;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    width: auto;
+}
+
+.names {
+    border: 1px solid black;
+    text-align: center;
+    font-weight: bold;
+}
+
+.name-link {
+    border: 1px solid black;
+}
+
+.innings-breakdown {
+    display: inherit;
+    flex-direction: inherit;
+    flex-wrap: inherit;
+    flex: 1 1 auto;
+    text-align: center;
+}
+
+.inning-column {
+    display: inherit;
+    flex-direction: column;
+    flex: 1 1 auto;
+}
+
+.inning-number {
+    border: 1px solid black;
+    font-weight: bold;
+}
+
+.inning-score {
+    border: 1px solid black;
 }
 
 .linescore-totals {
     display: inherit;
     flex-direction: inherit;
     flex-wrap: inherit;
+    width: 15%;
+    text-align: center;
+}
+
+.total-score {
+    border: 1px solid black;
+}
+
+.winning-score {
+    font-weight: bold;
+}
+
+@media screen and (max-width: 768px) {
+    .linescore {
+        width: 100%;
+    }
+    
 }

@@ -32,9 +32,9 @@ const LineScore = () => {
 
   // Create the linescore intro
   let linescoreIntro =
-    <div className={styles.inningBox}>
-      <div className={styles.inning}>Teams</div>
-      <div>
+    <div className={styles["teams-info"]}>
+      <div className={styles["names"]}>Teams</div>
+      <div className={styles["name-link"]}>
         <Link
           className={styles["team-link"]}
           href={`/baseball/teams/${awayTeam["id"]}`}
@@ -42,7 +42,7 @@ const LineScore = () => {
           {awayTeam["name"]}
         </Link>
       </div>
-      <div>
+      <div className={styles["name-link"]}>
         <Link
           className={styles["team-link"]}
           href={`/baseball/teams/${homeTeam["id"]}`}
@@ -85,22 +85,18 @@ const LineScore = () => {
     <div className={styles["linescore-totals"]}>
       <div className={styles["inning-column"]}>
         <div className={styles["inning-number"]}>R</div>
-        <div className={`${styles["linescore-total"]} ${(winningTeam === "away") ? "winning-score" : ""}`}>{awayTotals.runs}</div>
-        <div className={`${styles["linescore-total"]} ${(winningTeam === "home") ? "winning-score" : ""}`}>{homeTotals.runs}</div>
+        <div className={`${styles["total-score"]} ${(winningTeam === "away") ? styles["winning-score"] : ""}`}>{awayTotals.runs}</div>
+        <div className={`${styles["total-score"]} ${(winningTeam === "home") ? styles["winning-score"] : ""}`}>{homeTotals.runs}</div>
       </div>
-      <div className={styles["inning-column"]}>
       <div className={styles["inning-column"]}>
         <div className={styles["inning-number"]}>H</div>
-        <div className={styles["linescore-total"]}>{awayTotals.hits}</div>
-        <div className={styles["linescore-total"]}>{homeTotals.hits}</div>
+        <div className={styles["total-score"]}>{awayTotals.hits}</div>
+        <div className={styles["total-score"]}>{homeTotals.hits}</div>
       </div>
-      </div>
-      <div className={styles["inning-column"]}>
       <div className={styles["inning-column"]}>
         <div className={styles["inning-number"]}>E</div>
-        <div className={styles["linescore-total"]}>{awayTotals.errors}</div>
-        <div className={styles["linescore-total"]}>{homeTotals.errors}</div>
-      </div>
+        <div className={styles["total-score"]}>{awayTotals.errors}</div>
+        <div className={styles["total-score"]}>{homeTotals.errors}</div>
       </div>
     </div>
   );
@@ -110,7 +106,8 @@ const LineScore = () => {
 
   return (
     <div className={styles["linescore"]}>
-      {linescoreIntro} {
+      {linescoreIntro}
+      <div className={styles["innings-breakdown"]}>{
         inningBoxContent.map((inning) => {
           return (
             <div className={styles["inning-column"]} key={inning.inning}>
@@ -120,7 +117,7 @@ const LineScore = () => {
             </div>
           );
         })
-      }
+      }</div>
       {linescoreTotals}
     </div>
   );
