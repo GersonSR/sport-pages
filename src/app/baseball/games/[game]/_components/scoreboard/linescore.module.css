@@ -1,0 +1,11 @@
+.linescore {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.linescore-totals {
+    display: inherit;
+    flex-direction: inherit;
+    flex-wrap: inherit;
+}
