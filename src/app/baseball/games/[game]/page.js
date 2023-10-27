@@ -4,6 +4,7 @@ import { GameContext } from './layout';
 
 
 import Scoreboard from './_components/scoreboard/scoreboard';
+import BoxScore from './_components/boxscore/boxscore';
 
 import styles from './page.module.css';
 
@@ -27,6 +28,7 @@ const GamePage = ({ params }) => {
                 <p>Game ID: {params.game}</p>
             </div>
             <Scoreboard />
+            <BoxScore />
         </main>
     );
 }
