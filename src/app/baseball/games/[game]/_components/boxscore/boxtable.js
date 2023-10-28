@@ -21,8 +21,8 @@ const BoxTable = ({ tableType, tableOrder }) => {
 
     return (
         <div className={styles["boxstats-tables-container"]}>
-            <StatsTable stats={awayPlayerInfo} order={tableOrder} />
-            <StatsTable stats={homePlayerInfo} order={tableOrder} />
+            <div className={styles["boxstats-team-container"]}><StatsTable stats={awayPlayerInfo} order={tableOrder} /></div>
+            <div className={styles["boxstats-team-container"]}><StatsTable stats={homePlayerInfo} order={tableOrder} /></div>
         </div>
     );
 }

@@ -3,3 +3,7 @@
     flex-direction: row;
     margin: auto;
 }
+
+.boxstats-team-container {
+    flex: 1;
+}
