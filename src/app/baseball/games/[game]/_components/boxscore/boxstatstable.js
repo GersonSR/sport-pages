@@ -1,7 +1,9 @@
 
+import styles from './boxstatstable.module.css';
+
 const StatsTable = ({ stats, order }) => {
     return (
-        <table>
+        <table className={styles["box-table"]}>
             <thead>
                 <tr>
                     {order.map((stat, index) => {
@@ -22,9 +24,9 @@ const StatsTable = ({ stats, order }) => {
                                 <tr key={index}>
                                     {order.map((stat, index) => {
                                         let info = player[stat];
-                                        if (stat === "namefield") {
-                                            console.log(info);
-                                        }
+                                        // if (stat === "namefield") {
+                                        //     console.log(info);
+                                        // }
                                         return (
                                             <td key={index}>{info.replace(/ /g, "\u00a0")}</td>
                                         );
@@ -36,7 +38,14 @@ const StatsTable = ({ stats, order }) => {
                 }
             </tbody>
             <tfoot>
-
+                <tr>
+                    {order.map((stat, index) => {
+                        let info = stats[0][stat];
+                        return (
+                            <th key={index}>{info}</th>
+                        );
+                    })}
+                </tr>
             </tfoot>
         </table>
     );

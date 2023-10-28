@@ -10,13 +10,19 @@ const BoxTable = ({ tableType, tableOrder }) => {
     const { game, loading, error } = useContext(GameContext);
     let awayPlayerInfo = [];
     let homePlayerInfo = [];
+    let homeTotals = {};
+    let awayTotals = {};
 
     if (tableType === "Batters") {
         awayPlayerInfo = game["awayBatters"];
+        awayTotals = game["awayBattingTotals"];
         homePlayerInfo = game["homeBatters"];
+        homeTotals = game["homeBattingTotals"];
     } else {
         awayPlayerInfo = game["awayPitchers"];
-        awayPlayerInfo = game["homePitchers"];
+        awayTotals = game["awayPitchingTotals"];
+        homePlayerInfo = game["homePitchers"];
+        homeTotals = game["homePitchingTotals"];
     }
 
     return (
