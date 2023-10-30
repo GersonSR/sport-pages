@@ -1,3 +1,27 @@
 .box-table {
     width: 100%;
+    table-layout: fixed;
+    border: 2px solid #000000;
+    border-collapse: collapse;
+    height: 100%;
 }
+
+.box-table thead th:nth-child(1) {
+    width: 40%;
+}
+
+.box-table tbody tr td:nth-child(1) {
+    padding-left: 10px;
+}
+
+.box-table tbody tr td:nth-child(n+2) {
+    text-align: center;
+}
+
+.box-table tbody tr:nth-child(odd) {
+    background-color: white
+}
+  
+.box-table tbody tr:nth-child(even) {
+    background-color: lightgray;
+  }

@@ -1,7 +1,7 @@
 
 import styles from './boxstatstable.module.css';
 
-const StatsTable = ({ stats, order }) => {
+const StatsTable = ({ stats, order, totals }) => {
     return (
         <table className={styles["box-table"]}>
             <thead>
@@ -40,7 +40,10 @@ const StatsTable = ({ stats, order }) => {
             <tfoot>
                 <tr>
                     {order.map((stat, index) => {
-                        let info = stats[0][stat];
+                        let info = totals[stat];
+                        if (index === 0) {
+                            info = "Totals";
+                        }
                         return (
                             <th key={index}>{info}</th>
                         );
