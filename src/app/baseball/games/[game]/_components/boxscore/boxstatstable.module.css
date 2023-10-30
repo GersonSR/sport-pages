@@ -24,4 +24,13 @@
   
 .box-table tbody tr:nth-child(even) {
     background-color: lightgray;
-  }
+}
+
+.box-table thead {
+    background-color: #000000;
+    color: white;
+}
+
+.box-table tfoot {
+    border-top: 1px solid black;
+}
