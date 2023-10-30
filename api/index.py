@@ -178,7 +178,7 @@ def mlb_major_game(game_id):
     #Formatted Game Data from Stats API
     #For detailed info, view https://github.com/toddrob99/MLB-StatsAPI/blob/master/statsapi/__init__.py
     #Along with https://github.com/toddrob99/MLB-StatsAPI/wiki/Function:-boxscore
-    gameInfoFormatted = statsapi.boxscore_data(game_id, timecode=None)
+    gameInfoFormatted = statsapi.boxscore_data(game_id)
 
     # This adds all other game info to the formattedGame object not included in the above
     for key in gameInfoFormatted:
@@ -188,3 +188,8 @@ def mlb_major_game(game_id):
             formattedGame[key] = gameInfoFormatted[key]
 
     return formattedGame
+
+#PreFormatted Game Route
+@app.route("/api/mlb/game/<game_id>/formatted")
+def mlb_major_game_box_score_formatted(game_id):
+    return  statsapi.boxscore_data(game_id)
