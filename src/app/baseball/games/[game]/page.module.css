@@ -6,6 +6,7 @@
 @media screen and (min-width: 1000px) {
     .main-container {
         max-width: 80vw;
+        margin: 6rem auto 0 ;
     }
     
 } 
@@ -14,6 +15,5 @@
     .main-container {
         max-width: 90vw;
         margin: 6rem auto 0 ;
-    }
-    
+    }   
 }
