@@ -17,15 +17,20 @@ const BoxTable = ({ tableType, tableOrder }) => {
 
     let homeNotes = [];
     let awayNotes = [];
+    let additionalAwayNotes = [];
+    let additionalHomeNotes = [];
+
 
     if (tableType === "Batters") {
         awayPlayerInfo = game["awayBatters"];
         awayTotals = game["awayBattingTotals"];
+        additionalAwayNotes = game["away"]["info"]
         // awayNotes = game["awayBattingNotes"]; Current away/homeBattingNotes data object are incorrect, manually retrieve.
         awayNotes = game["away"]["note"];
 
         homePlayerInfo = game["homeBatters"];
         homeTotals = game["homeBattingTotals"];
+        additionalHomeNotes = game["home"]["info"]
         // homeNotes = game["homeBattingNotes"];
         homeNotes = game["home"]["note"];
     } else {
@@ -50,10 +55,10 @@ const BoxTable = ({ tableType, tableOrder }) => {
             </div>
             <div className={styles["boxstats-tables-container"]}>
                 <div className={styles["boxstats-team-container"]}>
-                    <StatsTableNotes notes={awayNotes} />
+                    <StatsTableNotes notes={awayNotes} additional={additionalAwayNotes}/>
                 </div>
                 <div className={styles["boxstats-team-container"]}>
-                    <StatsTableNotes notes={homeNotes} />
+                    <StatsTableNotes notes={homeNotes} additional={additionalHomeNotes}/>
                 </div>
             </div>
         </div>
