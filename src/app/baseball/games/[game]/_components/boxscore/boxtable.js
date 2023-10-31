@@ -21,19 +21,21 @@ const BoxTable = ({ tableType, tableOrder }) => {
     if (tableType === "Batters") {
         awayPlayerInfo = game["awayBatters"];
         awayTotals = game["awayBattingTotals"];
-        awayNotes = game["awayBattingNotes"];
+        // awayNotes = game["awayBattingNotes"]; Current away/homeBattingNotes data object are incorrect, manually retrieve.
+        awayNotes = game["away"]["note"];
 
         homePlayerInfo = game["homeBatters"];
         homeTotals = game["homeBattingTotals"];
-        homeNotes = game["homeBattingNotes"];
+        // homeNotes = game["homeBattingNotes"];
+        homeNotes = game["home"]["note"];
     } else {
         awayPlayerInfo = game["awayPitchers"];
         awayTotals = game["awayPitchingTotals"];
-        awayNotes = game["awayPitchingNotes"];
+        // awayNotes = game["awayPitchingNotes"];
 
         homePlayerInfo = game["homePitchers"];
         homeTotals = game["homePitchingTotals"];
-        homeNotes = game["homePitchingNotes"];
+        // homeNotes = game["homePitchingNotes"];
     }
 
     return (
