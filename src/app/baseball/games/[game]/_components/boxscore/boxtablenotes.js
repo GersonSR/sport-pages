@@ -36,7 +36,7 @@ const StatsTableNotes = ({ notes, additional }) => {
         {additional.map((category, index) => {
             return(
             <div key={index}>
-                <h4>{category["title"]}</h4>
+                <h5>{category["title"]}</h5>
                 {category["fieldList"].map((note, index) => {
                     return (
                     <div key={index}>
