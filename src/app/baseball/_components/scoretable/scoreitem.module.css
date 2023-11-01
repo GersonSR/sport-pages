@@ -35,6 +35,11 @@
   color: black;
 }
 
+.status {
+  text-decoration: none;
+  color: black;
+}
+
 @media screen and (max-width: 768px) {
   .score-item {
     min-width: 100%;
