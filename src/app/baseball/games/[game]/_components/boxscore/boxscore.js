@@ -1,4 +1,5 @@
 import styles from './boxscore.module.css';
+import BoxScoreFooter from './boxscorefooter';
 import BoxTable from './boxtable';
 
 const BoxScore = () => {
@@ -11,6 +12,7 @@ const BoxScore = () => {
             <h2>Box Score</h2>
             <BoxTable tableType={"Batters"} tableOrder={battersTableFields}/>
             <BoxTable tableType={"Pitchers"} tableOrder={pitcherTableFields}/>
+            <BoxScoreFooter />
         </div>
     );
 };
