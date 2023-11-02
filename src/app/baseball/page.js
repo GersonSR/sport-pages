@@ -30,7 +30,7 @@ const SportPage = () => {
             ></Image>
             <span>MLB</span>
             </Link>
-            <ScoreTable league="mlb" date="today"/>
+            <ScoreTable league="MLB" date="today" verbosity="simple"/>
         </li>
       </ul>
     </main>
