@@ -1,0 +1,13 @@
+.boxscore-footer-item {
+    display: flex;
+    flex-direction: row;
+}
+
+.boxscore-footer-item-lable {
+    padding-right: 4px;
+    font-size: 1rem;
+}
+
+.boxscore-footer-item-item {
+    font-size: 1rem;
+}
