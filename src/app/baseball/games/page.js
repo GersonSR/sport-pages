@@ -1,6 +1,9 @@
+
+import styles from './page.module.css';
+
 const GamesPage = () => {
   return (
-    <div> This will feature the schedule for leagues eventually! </div>
+    <main className={styles["games-main-container"]}> This will feature the schedule for leagues eventually! </main>
   );
 }
 
