@@ -9,13 +9,15 @@ import styles from "./scoretable.module.css";
 const ScoreTable = (props) => {
   const [scores, setScores] = useState([]);
 
+  const { league, date, verbosity } = props;
+
   // This will be commented out till the JSON files are corretly parsed. Dummy Date will be used for now.
   const [error, setError] = useState(null);
 
   const fetchScores = useCallback(async () => {
     try {
       const response = await fetch(
-        "/api/mlb/schedule/today"
+        `/api/mlb/schedule/${date}`
       );
 
       if (!response.ok) {

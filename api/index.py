@@ -10,10 +10,11 @@ CORS(app)
 
 @app.route("/api/mlb/schedule/<date>")
 def mlb_schedule_single(date):
+    date = date.replace("-", "/")
     if (date == "today") :
         date = datetime.today().strftime("%m/%d/%Y")
     else :
-        date = datetime.strptime(date, '%Y-%m-%d')
+        date = datetime.strptime(date, '%m/%d/%Y').strftime("%m/%d/%Y")
     schedule = statsapi.schedule(date)
     return schedule
 

@@ -4,7 +4,6 @@
   justify-content: space-between;
   align-items: center;
   overflow: auto;
-  border-left: 1px solid black;
 }
 
 .scoretable span {
