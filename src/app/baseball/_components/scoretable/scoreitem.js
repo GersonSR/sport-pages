@@ -6,9 +6,13 @@ import Link from "next/link";
 
 const ScoreItem = (props) => {
   const score = props.score;
+
   let displayScores = false;
+
   const gameTime = new Date(score["game_datetime"]);
+
   let status = score['status'];
+
   if (status === "In Progress") { 
     displayScores = true;
     status = score['inning_state'] + " " + score['current_inning'];

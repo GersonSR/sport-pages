@@ -127,7 +127,7 @@ const ScoreTable = (props) => {
     <div className={styles.scoretable}>
       {scores.length !== 0 ? (
         scores.map((score) => (
-          <ScoreItem score={score} key={score["game_id"]} />
+          <ScoreItem score={score} key={score["game_id"]} verbosity={verbosity}/>
         ))
       ) : (
         <span>No Games Today</span>
