@@ -12,7 +12,7 @@ const GamesPage = () => {
   let timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
   const [startDate, setStartDate] = useState(new Date());
-  const [formattedDate, setFormattedDate] = useState(new Date().toLocaleDateString(navigator.language, {timeZone: timeZone, year: 'numeric', month: 'long', day: 'numeric'}));
+  const [formattedDate, setFormattedDate] = useState("Today");
   const maxDate = new Date();
 
   const leagues = ["MLB"];
