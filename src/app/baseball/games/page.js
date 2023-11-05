@@ -41,11 +41,10 @@ const GamesPage = () => {
         onChange={handleDateChange}
         maxDate={maxDate}
       />
-      {leagues.map((league) => {
-        console.log(league);
+      {leagues.map((league, index) => {
         let leagueLogoUrl = `/images/baseball/${league.toLowerCase()}/${league.toLowerCase()}logo.svg`;
         return (
-          <div className={styles["league-container"]}>
+          <div className={styles["league-container"]} key={index}>
             <div className={styles["league-info"]}>
             <Link href={`/baseball/${league}`}>
               <Image
