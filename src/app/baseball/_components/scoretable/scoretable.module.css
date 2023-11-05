@@ -1,7 +1,7 @@
 .scoretable {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: inherit;
   align-items: center;
   overflow: auto;
   flex-wrap: inherit;

@@ -46,6 +46,7 @@ const GamesPage = () => {
         let leagueLogoUrl = `/images/baseball/${league.toLowerCase()}/${league.toLowerCase()}logo.svg`;
         return (
           <div className={styles["league-container"]}>
+            <div className={styles["league-info"]}>
             <Link href={`/baseball/${league}`}>
               <Image
                 src={leagueLogoUrl}
@@ -54,10 +55,12 @@ const GamesPage = () => {
                 height={72}
                 sizes="100vw"
                 // Make the image display full width
-                className={styles["league-logo"]}
-              ></Image>
-              <span>{league}</span>
+                className={styles["league-logo"]} />
             </Link>
+            <Link href={`/baseball/${league}`}>
+              <h3>{league}</h3>
+            </Link>
+            </div>
             <div className={styles["league-score-container"]}>
               <ScoreTable league="MLB" date="06-06-2016" verbosity="expanded" />
             </div>
