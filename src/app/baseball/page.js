@@ -15,8 +15,9 @@ const SportPage = () => {
           height={100}
         />
       </h1>
+      <h2>Choose which league to view:</h2>
+      <Link href="/baseball/games">Click here to view expanded games page</Link>
       <ul className={styles["leagues"]}>
-        <p>Choose which league to view:</p>
         <li className={styles.league} key={"MLB"}>
           <Link href="/baseball/MLB">
             <Image 
