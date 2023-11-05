@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 
 import ReactDatePicker from "react-datepicker";
 import ScoreTable from "../_components/scoretable/scoretable";
+import Link from "next/link";
+import Image from "next/image";
 
 import styles from "./page.module.css";
 import "react-datepicker/dist/react-datepicker.css";
@@ -39,9 +41,29 @@ const GamesPage = () => {
         onChange={handleDateChange}
         maxDate={maxDate}
       />
-      <div className={styles["league-score-container"]}>
-        <ScoreTable league="MLB" date="06-06-2016" verbosity="expanded" />
-      </div>
+      {leagues.map((league) => {
+        console.log(league);
+        let leagueLogoUrl = `/images/baseball/${league.toLowerCase()}/${league.toLowerCase()}logo.svg`;
+        return (
+          <div className={styles["league-container"]}>
+            <Link href={`/baseball/${league}`}>
+              <Image
+                src={leagueLogoUrl}
+                alt={`${league} Logo`}
+                width={128}
+                height={72}
+                sizes="100vw"
+                // Make the image display full width
+                className={styles["league-logo"]}
+              ></Image>
+              <span>{league}</span>
+            </Link>
+            <div className={styles["league-score-container"]}>
+              <ScoreTable league="MLB" date="06-06-2016" verbosity="expanded" />
+            </div>
+          </div>
+        );
+      })}
     </main>
   );
 };
