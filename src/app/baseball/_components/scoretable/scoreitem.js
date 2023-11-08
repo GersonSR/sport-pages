@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import SimpleScoreItem from "./scoreitems/simplescoreitem"
+import VerboseScoreItem from "./scoreitems/verbosescoreitme";
 
 const ScoreItem = ({ score, verbosity }) => {
     let content;
@@ -7,7 +8,7 @@ const ScoreItem = ({ score, verbosity }) => {
     if (verbosity === "simple") {
         content = <SimpleScoreItem score={score} verbosity={verbosity}></SimpleScoreItem>
     } else if (verbosity === "expanded") { 
-        content = <SimpleScoreItem score={score} verbosity={verbosity}></SimpleScoreItem>
+        content = <VerboseScoreItem score={score} verbosity={verbosity}></VerboseScoreItem>
     }
     return (
         <Fragment>
