@@ -8,6 +8,23 @@ app = Flask(__name__)
 
 CORS(app)
 
+#General API Functions 
+
+#Returns meta information about a given data type in relation to the API    
+#View https://github.com/toddrob99/MLB-StatsAPI/wiki/Function:-meta for further details and known data types
+@app.route("/api/mlb/meta/<type>")
+def mlb_meta(type):
+    data = statsapi.meta(type)
+    return data
+
+#Returns notes about a given endpoint
+#View https://github.com/toddrob99/MLB-StatsAPI/wiki/Function:-notes for further details
+@app.route("/api/mlb/notes/<endpoint>")
+def mlb_notes(endpoint):
+    data = statsapi.notes(endpoint)
+    return data
+
+
 @app.route("/api/mlb/schedule/<date>")
 def mlb_schedule_single(date):
     date = date.replace("-", "/")
@@ -194,3 +211,5 @@ def mlb_major_game(game_id):
 @app.route("/api/mlb/game/<game_id>/formatted")
 def mlb_major_game_box_score_formatted(game_id):
     return  statsapi.boxscore_data(game_id)
+
+
