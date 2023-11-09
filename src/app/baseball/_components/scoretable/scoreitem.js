@@ -6,9 +6,9 @@ const ScoreItem = ({ score, verbosity }) => {
     let content;
 
     if (verbosity === "simple") {
-        content = <SimpleScoreItem score={score} verbosity={verbosity}></SimpleScoreItem>
+        content = <SimpleScoreItem score={score}></SimpleScoreItem>
     } else if (verbosity === "expanded") { 
-        content = <VerboseScoreItem score={score} verbosity={verbosity}></VerboseScoreItem>
+        content = <VerboseScoreItem score={score}></VerboseScoreItem>
     }
     return (
         <Fragment>
