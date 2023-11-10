@@ -14,6 +14,16 @@ const VerboseScoreItem = ({ score }) => {
   }
   
   // const awayRecord = fetch("/api/mlb/record/" + score["away_id"]);
+
+  let pitchingContent;
+
+  if (status === "Final") {
+    pitchingContent = (<div></div>);
+  }
+  else {
+    pitchingContent = (<div></div>)
+  }
+
   return (
     <div className={styles["score-item"]}>
       <Link href={`/baseball/games/${score["game_id"]}`} className={styles["status"]}>{status}</Link>
@@ -24,6 +34,11 @@ const VerboseScoreItem = ({ score }) => {
       <div className={styles["score"]}>
         <Link href={`/baseball/teams/${score["home_id"]}`} className={styles["home-name"]}>{score["home_name"]}</Link>
         <div className={styles["home-score"]}>{score["home_score"]}</div>
+      </div>
+      <div className={styles["verbose"]}>
+        <div className={styles["pitching-container"]}>
+          {pitchingContent}
+        </div>
       </div>
     </div>
   );
