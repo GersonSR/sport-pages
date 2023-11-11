@@ -56,6 +56,8 @@ const VerboseScoreItem = ({ score }) => {
         <div className={styles["pitching-container"]}>
           {pitchingContent}
         </div>
+        <div className={styles["additional-info"]}>
+        </div>
       </div>
     </div>
   );
