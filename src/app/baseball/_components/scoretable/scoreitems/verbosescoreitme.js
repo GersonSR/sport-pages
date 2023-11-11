@@ -18,14 +18,20 @@ const VerboseScoreItem = ({ score }) => {
   let pitchingContent;
 
   if (status === "Final") {
+    let savingPitcher
+    if (("save_pitcher" in score) &&(score["save_pitcher"] !== "" && score["save_pitcher"] !== null)) {
+      savingPitcher = (
+        <div className={styles["pitcher-info"]}>SV:{' '}{score["save_pitcher"]}</div>
+      );
+    }
     pitchingContent = (
         <div className={styles["pitching-content"]}>
-            <div className={styles["pitcher-info"]}>WP:</div>
-            <div className={styles["pitcher-info"]}>LP:</div>
+            <div className={styles["pitcher-info"]}>WP:{' '}{score["winning_pitcher"]}</div>
+            <div className={styles["pitcher-info"]}>LP:{' '}{score["losing_pitcher"]}</div>
+            {savingPitcher}
         </div>
       );
-  }
-  else {
+  } else {
     pitchingContent = (
       <div className={styles["pitching-content"]}>
 
