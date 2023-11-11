@@ -18,10 +18,19 @@ const VerboseScoreItem = ({ score }) => {
   let pitchingContent;
 
   if (status === "Final") {
-    pitchingContent = (<div></div>);
+    pitchingContent = (
+        <div className={styles["pitching-content"]}>
+            <div className={styles["pitcher-info"]}>WP:</div>
+            <div className={styles["pitcher-info"]}>LP:</div>
+        </div>
+      );
   }
   else {
-    pitchingContent = (<div></div>)
+    pitchingContent = (
+      <div className={styles["pitching-content"]}>
+
+      </div>
+    );
   }
 
   return (

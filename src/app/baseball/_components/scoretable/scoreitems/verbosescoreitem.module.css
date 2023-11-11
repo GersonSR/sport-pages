@@ -40,6 +40,11 @@
   color: black;
 }
 
+.verbose {
+  border-top: 1px solid black;
+  padding-top: .5rem;
+}
+
 @media screen and (max-width: 768px) {
   .score-item {
     min-width: 100%;
