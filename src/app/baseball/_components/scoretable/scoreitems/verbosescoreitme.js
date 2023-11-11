@@ -34,7 +34,9 @@ const VerboseScoreItem = ({ score }) => {
   } else {
     pitchingContent = (
       <div className={styles["pitching-content"]}>
-
+        <div>Probable Pitchers:</div>
+        <div className={styles["pitcher-info"]}>Away Starter:{' '}{score["away_probable_pitcher"]}</div>
+        <div className={styles["pitcher-info"]}>Home Starter:{' '}{score["home_probable_pitcher"]}</div>
       </div>
     );
   }
