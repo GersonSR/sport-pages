@@ -15,6 +15,8 @@ const VerboseScoreItem = ({ score }) => {
   
   // const awayRecord = fetch("/api/mlb/record/" + score["away_id"]);
 
+
+  // Additional Pitching Content
   let pitchingContent;
 
   if (status === "Final") {
@@ -41,6 +43,26 @@ const VerboseScoreItem = ({ score }) => {
     );
   }
 
+  // Further Additional Content
+  let additionalContent;
+  let doubleHeaderContent;
+
+  if (score["doubleheader"] === "Y") {
+    doubleHeaderContent = (
+      <div className={styles["doubleheader"]}>Doubleheader</div>
+    );
+  } else if (score["doubleheader"] === "S") {
+    doubleHeaderContent = (
+      <div className={styles["doubleheader"]}>Doubleheader (Split Ticket)</div>
+    );
+  }
+
+  additionalContent = (
+    <div className={styles["additional-content-container"]}>
+      {doubleHeaderContent}
+    </div>
+  );
+
   return (
     <div className={styles["score-item"]}>
       <Link href={`/baseball/games/${score["game_id"]}`} className={styles["status"]}>{status}</Link>
@@ -57,6 +79,7 @@ const VerboseScoreItem = ({ score }) => {
           {pitchingContent}
         </div>
         <div className={styles["additional-info"]}>
+          {additionalContent}
         </div>
       </div>
     </div>
