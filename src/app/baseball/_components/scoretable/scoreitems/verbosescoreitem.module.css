@@ -53,11 +53,11 @@
 }
 
 .additional-content {
-
+  display: inherit;
 }
 
 .doubleheader {
-  font-weight: bold;
+  display: inherit;
 }
 
 @media screen and (max-width: 768px) {
