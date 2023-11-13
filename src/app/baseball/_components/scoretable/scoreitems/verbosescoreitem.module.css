@@ -47,7 +47,17 @@
 
 .additional-info {
   border-top: 1px solid black;
+  padding-top: .5rem;
   margin-top: .5rem;
+  font-size: small;
+}
+
+.additional-content {
+
+}
+
+.doubleheader {
+  font-weight: bold;
 }
 
 @media screen and (max-width: 768px) {

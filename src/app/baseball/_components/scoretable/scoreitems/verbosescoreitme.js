@@ -45,20 +45,43 @@ const VerboseScoreItem = ({ score }) => {
 
   // Further Additional Content
   let additionalContent;
+
+
+  const gameTypeInfo = {
+    "R": "Regular Season",
+    "S": "Spring Training",
+    "F": "Wild Card Game",
+    "D": "Division Series",
+    "L": "League Championship Series",
+    "W": "World Series",
+    "C": "Championship Game",
+    "N": "Nineteenth Century Series",
+    "P": "Playoff",
+    "A": "All-Star Game",
+    "I": "Intrasquad Game",
+    "E": "Exhibition Game",
+  }
+
+  let gameType = (<div className={styles["game-type"]  + " " + styles["additional-content"]}>{gameTypeInfo[score["game_type"]]}</div>);
+
+
+
   let doubleHeaderContent;
 
   if (score["doubleheader"] === "Y") {
     doubleHeaderContent = (
-      <div className={styles["doubleheader"]}>Doubleheader</div>
+      <div className={styles["doubleheader"] + " " + styles["additional-content"]}>Doubleheader</div>
     );
   } else if (score["doubleheader"] === "S") {
     doubleHeaderContent = (
-      <div className={styles["doubleheader"]}>Doubleheader (Split Ticket)</div>
+      <div className={styles["doubleheader"] + " " + styles["additional-content"]}>Doubleheader (Split Ticket)</div>
     );
   }
 
   additionalContent = (
     <div className={styles["additional-content-container"]}>
+      <div className={styles["additional-title"]}>Additional Game Info:</div>
+      {gameType}
       {doubleHeaderContent}
     </div>
   );
