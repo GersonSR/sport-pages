@@ -62,7 +62,7 @@ const VerboseScoreItem = ({ score }) => {
     "E": "Exhibition Game",
   }
 
-  let gameType = (<div className={styles["game-type"]  + " " + styles["additional-content"]}>{gameTypeInfo[score["game_type"]]}</div>);
+  let gameType = (<div className={styles["game-type"]  + " " + styles["additional-content"]}>Type: {gameTypeInfo[score["game_type"]]}</div>);
 
 
 
